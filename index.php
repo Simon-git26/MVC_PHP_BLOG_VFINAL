@@ -1,3 +1,3 @@
 <?php
 
-echo 'Premier commit';
+echo 'Le Premier commit';
