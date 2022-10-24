@@ -10,7 +10,6 @@ define('ROOT', dirname(__DIR__.'/MVC_PHP_P5_V1'));
 
 // echo ROOT;
 
-
 // Inclure mon autoloader
 Require_once ROOT.'/App/Autoloader.php';
 
