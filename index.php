@@ -21,7 +21,7 @@ App\Autoloader::spl_autoload();
 $page = 'home';
 
 // Appéler la methode voulu, definit dans le HomeController
-$method = 'DataBdd';
+$method = 'getBddData';
 
 
 // Si @param page est definis, alors sa valeur sera la valeur du param url
