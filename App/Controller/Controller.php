@@ -9,12 +9,12 @@ abstract class Controller {
     // J'extrait les données de $data
     // Je ferme la mémoire tampon  ob_get_clean();
     // Je require ma view
-    protected function renderer($data, $template) {
+    protected function renderer($data, $view) {
         if (isset($data)) {
             ob_start();
             extract($data);
             ob_get_clean();
-            require_once ROOT.'/App/Views/'.$template.'.php';
+            require_once ROOT.'/App/Views/'.$view.'.php';
         } else {
             throw new \Exception("Données ".$data." introuvables", 1);
         }

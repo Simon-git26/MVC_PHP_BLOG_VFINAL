@@ -7,18 +7,28 @@ use \PDO;
    
 class Model {
 
-    public function getGet() {
-        $database = new PDO('mysql:host=localhost;dbname=p5_mvc_php;charset=utf8', 'root', 'root');
-        $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    private static $_database;
 
-        $res = $database->query(
+    // Connexion Base de donnée
+    private function bddConnect() {
+        self::$_database = new PDO('mysql:host=localhost;dbname=p5_mvc_php;charset=utf8', 'root', 'root');
+        self::$_database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+
+
+    // Fonction pour récuperer tous mes posts
+    public function getPosts() {
+
+        $this->bddConnect();
+
+        $request = self::$_database->query(
             "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts ORDER BY post_date_create ASC LIMIT 0, 5"
         );
 
-        $posts = $res->fetchAll();
+        $posts = $request->fetchAll();
 
         return $posts;
-   }
+    }
 }
 
 
