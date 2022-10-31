@@ -6,7 +6,8 @@ error_reporting(E_ALL);
 
 
 // Définir  ma root racine du projet
-define('ROOT', dirname(__DIR__.'/MVC_PHP_P5_V1'));
+define('ROOT', dirname(__DIR__.'/MVC_PHP_BLOG_VFINAL'));
+
 // echo ROOT;
 
 // Inclure mon autoloader
@@ -20,6 +21,8 @@ $page = 'home';
 // Appéler la methode voulu, definit dans le HomeController
 $method = 'getBddData';
 
+$action = 'post';
+
 
 // Si @param page est definis, alors sa valeur sera la valeur du param url
 if (isset($_GET['page'])) {
@@ -29,6 +32,25 @@ if (isset($_GET['page'])) {
 if (isset($_GET['method'])) {
     $method = $_GET['method'];
 }
+
+
+
+/* if (isset($_GET['action']) && $_GET['action'] !== '') {
+    if ($_GET['action'] === 'post') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $identifier = $_GET['id'];
+
+            
+        } else {
+            throw new Exception('Aucun identifiant de billet envoyé');
+        }
+    } else {
+        throw new Exception("La page que vous recherchez n'existe pas.");
+    }
+}
+*/
+
+
 
 // Definir dynamiquement mon chemin pour le controlleur voulu
 $nameController = 'App\Controller\\'.ucfirst($page).'Controller';

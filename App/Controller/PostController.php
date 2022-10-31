@@ -6,16 +6,16 @@ use App\Controller\Controller as Controller;
 use App\Model\Model as Model;
 
 
-class HomeController extends Controller {
+class PostController extends Controller {
     private $_model;
 
     // Instance de Model et recupération de getPosts()
     // Envoi de mon tableau $posts a ma view home
-    public function getBddData() {
+    public function getBddData($post_id) {
         
         $this->_model = new Model;
-        $posts = $this->_model->getPosts();
+        $post = $this->_model->getPostId($post_id);
 
-        $this->render(array('posts' => $posts), 'home');
+        $this->render(array('post' => $post), 'post');
     }
 }

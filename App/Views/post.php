@@ -10,24 +10,19 @@
 
 	<body>
     	<h1>Toto Titre !</h1>
+        <p><a href="index.php">Retour à la liste de tous les posts</a></p>
     	
         <div class="d-flex">
-            <?php
-            foreach ($posts as $post) {
-            ?>
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $post['post_title']; ?></h5>
-                        <p class="card-text"><?php echo $post['post_content']; ?></p>
-                        <p class="card-text"><?php echo $post['post_date_create']; ?></p>
+            
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $post['post_title']; ?></h5>
+                    <p class="card-text"><?php echo $post['post_content']; ?></p>
+                    <p class="card-text"><?php echo $post['post_date_create']; ?></p>
 
-                        <em><a href="index.php?action=post&id=<?php echo urlencode($post['post_id']) ?>">Affichage de mon post</a></em>
-                    </div>
                 </div>
-            <?php
-            }
-            ?>
+            </div>
+            
         </div>
-
 	</body>
 </html>
