@@ -17,38 +17,24 @@ App\Autoloader::spl_autoload();
 
 
 // Si @param page n'est pas definis, par default il sera a home
-$page = 'home';
+$page = '';
 // Appéler la methode voulu, definit dans le HomeController
 $method = 'getBddData';
 
-$action = 'post';
+// $action = 'post';
 
 
 // Si @param page est definis, alors sa valeur sera la valeur du param url
-if (isset($_GET['page'])) {
+if (isset($_GET['page']) && $_GET['page'] === 'home') {
+    $page = $_GET['page'];
+} else if (isset($_GET['page']) &&  $_GET['page'] === 'login') {
     $page = $_GET['page'];
 }
+
 
 if (isset($_GET['method'])) {
     $method = $_GET['method'];
 }
-
-
-
-/* if (isset($_GET['action']) && $_GET['action'] !== '') {
-    if ($_GET['action'] === 'post') {
-        if (isset($_GET['id']) && $_GET['id'] > 0) {
-            $identifier = $_GET['id'];
-
-            
-        } else {
-            throw new Exception('Aucun identifiant de billet envoyé');
-        }
-    } else {
-        throw new Exception("La page que vous recherchez n'existe pas.");
-    }
-}
-*/
 
 
 

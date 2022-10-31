@@ -15,14 +15,33 @@ class Model {
     }
 
 
+
     // USER
-    /*
-    public function register() {
+    // Fonction pour récuperer le user qui se connecte
+    public function getUser($username) {
 
+        $this->bddConnect();
+
+        $request = self::$_database->query(
+            "SELECT * FROM users WHERE user_firstname = '".$username."'"
+        );
+
+        $username = $request->fetchAll();
+
+        echo 'username';
+        var_dump($username);
+        die();
+
+        return $username;
+
+
+       
     }
-    */
+
+    
 
 
+    // POSTS
     // Fonction pour récuperer tous mes posts
     public function getPosts() {
 
@@ -39,10 +58,11 @@ class Model {
 
 
 
+
     
     // Fonction pour récupérer un post selon son id
     
-    public function getPostId($post_id) {
+    /*public function getPostId($post_id) {
         
         $this->bddConnect();
 
@@ -56,7 +76,7 @@ class Model {
         die();
 
         return $post;
-    }
+    }*/
     
 
 
