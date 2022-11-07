@@ -1,5 +1,21 @@
 <?php
 
+// ******* Création de branche selon les issues *****
+
+// Pour crée une branch qui contient mes modifs, donc mon issue,
+// Je fait git branch nom de la branch
+// git checkout nouvelle branch
+// git add . / commit / push origin
+
+// Je suis sur la branche SystemeAuthentification
+// Une fois mon travail sur l'authentification terminer, 
+// je retournerais sur master avec git checkout master
+// et la je ferait un git merge SystemeAuthentification
+// pour fusionner ma branche authentification avec ma master et ainsi de suite 
+
+
+
+
 // Initialiser la session
 session_start();
 
