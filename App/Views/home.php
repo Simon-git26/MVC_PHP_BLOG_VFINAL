@@ -22,7 +22,14 @@
         <div class="card" style="width: 25rem; margin:50px;">
             <div class="card-body">
                 <div class="sucess">
-                    <h1>Bienvenue <?php echo $_SESSION['username']; ?>!</h1>
+                    
+                    <?php
+                    foreach ($usernames as $username) {
+                    ?>
+                        <h5 class="card-title">Bienvenue <?= $username['username']; ?></h5>
+                    <?php
+                    }
+                    ?>
                     <p>C'est votre tableau de bord.</p>
                     <a href="logout.php">Déconnexion</a>
                 </div>
@@ -38,9 +45,9 @@
             ?>
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $post['post_title']; ?></h5>
-                        <p class="card-text"><?php echo $post['post_content']; ?></p>
-                        <p class="card-text"><?php echo $post['post_date_create']; ?></p>
+                        <h5 class="card-title"><?= $post['post_title']; ?></h5>
+                        <p class="card-text"><?= $post['post_content']; ?></p>
+                        <p class="card-text"><?= $post['post_date_create']; ?></p>
 
                         <em><a href="index.php?action=post&id=<?php echo urlencode($post['post_id']) ?>">Affichage de mon post</a></em>
                     </div>
