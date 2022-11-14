@@ -8,17 +8,22 @@
 // git add . / commit / push origin
 
 // Je suis sur la branche SystemeAuthentification
-// Une fois mon travail sur l'authentification terminer, 
+// Une fois mon travail sur l'authentification terminer,
 // je retournerais sur master avec git checkout master
 // et la je ferait un git merge SystemeAuthentification
-// pour fusionner ma branche authentification avec ma master et ainsi de suite 
-
+// pour fusionner ma branche authentification avec ma master et ainsi de suite
 
 
 
 // Initialiser la session
 session_start();
 
+// Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
+/*
+if(!isset($_SESSION["username"])){
+    header("Location: ?page=login");
+}
+*/
 
 
 // Affichage All de mes erreurs
@@ -34,17 +39,11 @@ define('ROOT', dirname(__DIR__.'/MVC_PHP_BLOG_VFINAL'));
 
 
 
-// Route de connection pour l'instant
-// http://localhost/MVC_PHP_BLOG_VFINAL/App/Views/login.php
+// Route de connection de register
+// http://localhost/MVC_PHP_BLOG_VFINAL/App/Views/register.php
 
-// Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
-/*
-if(!isset($_SESSION["username"])){
-    header("Location: login.php");
-    exit();
-}
-*/
-
+// Partie Boulot
+// http://localhost:8080/my-app/MVC_PHP_BLOG_VFINAL/aPP/Views/register.php
 
 
 
@@ -52,8 +51,6 @@ if(!isset($_SESSION["username"])){
 Require_once ROOT.'/App/Autoloader.php';
 // spl_autoload dans mon Autoloader.php()
 App\Autoloader::spl_autoload();
-
-
 
 
 
@@ -76,7 +73,6 @@ if (isset($_GET['page']) && $_GET['page'] === 'home') {
 if (isset($_GET['method'])) {
     $method = $_GET['method'];
 }
-
 
 
 // Definir dynamiquement mon chemin pour le controlleur voulu

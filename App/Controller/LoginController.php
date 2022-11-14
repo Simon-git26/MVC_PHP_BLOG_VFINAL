@@ -7,34 +7,20 @@ use App\Model\Model as ModelUser;
 
 
 class LoginController extends Controller {
+    private $_register;
 
-    private $_model;
-    
 
     // Instance de Model et recupération de getPosts()
     // Envoi de mon tableau $posts a ma view home
     public function getBddData() {
-        
-        $this->_model = new ModelUser;
-        $user = $this->_model->getUser($_POST['username']);
+       
 
+        $this->_register = new ModelUser;
+        $this->_register->registerUser();
 
-        echo '</br>';
-        echo '</br>';
-        echo '</br>';
-        echo '</br>';
-        echo '</br>';
-        echo 'test';
-        var_dump($user);
-        echo '</br>';
-        echo '</br>';
-        echo '</br>';
-        echo '</br>';
+        $arrayVariableRegister = [];
 
-       die();
+        $this->render($arrayVariableRegister, 'login');
 
-        
-
-        $this->render(array('user' => $user), 'user');
     }
 }

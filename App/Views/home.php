@@ -11,7 +11,7 @@
     </head>
 
     <body>
-        <h1>Toto Titre !</h1>
+        <!--<h1>Le Blog !</h1>-->
        
 
         <?php
@@ -22,7 +22,7 @@
         <div class="card" style="width: 25rem; margin:50px;">
             <div class="card-body">
                 <div class="sucess">
-                    
+                   
                     <?php
                     foreach ($usernames as $username) {
                     ?>
@@ -31,31 +31,29 @@
                     }
                     ?>
                     <p>C'est votre tableau de bord.</p>
-                    <a href="logout.php">Déconnexion</a>
+                    <a href="App/Views/logout.php">Déconnexion</a>
                 </div>
             </div>
         </div>
 
        
-           
        
-        <div class="d-flex">
-            <?php
-            foreach ($posts as $post) {
-            ?>
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= $post['post_title']; ?></h5>
-                        <p class="card-text"><?= $post['post_content']; ?></p>
-                        <p class="card-text"><?= $post['post_date_create']; ?></p>
+        <?php
+        foreach ($posts as $post) {
+        ?>
+            <div class="card m-5" style="width: 19rem;box-shadow: 0px 0px 8px 0px grey;">
+                <div class="card-body" style="text-align:center;">
+                    <h5 class="card-title"><?= $post['post_title']; ?></h5>
+                    <p class="card-text"><?= $post['post_content']; ?></p>
+                    <p class="card-text"><?= $post['post_date_create']; ?></p>
 
-                        <em><a href="index.php?action=post&id=<?php echo urlencode($post['post_id']) ?>">Affichage de mon post</a></em>
-                    </div>
+                    <em><a href="index.php?action=post&id=<?php echo urlencode($post['post_id']) ?>">Affichage de mon post</a></em>
                 </div>
-            <?php
-            }
-            ?>
-        </div>
+            </div>
+        <?php
+        }
+        ?>
+       
 
     </body>
 </html>
