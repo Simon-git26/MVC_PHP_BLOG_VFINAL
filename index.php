@@ -12,6 +12,7 @@
 // je retournerais sur master avec git checkout master
 // et la je ferait un git merge SystemeAuthentification
 // pour fusionner ma branche authentification avec ma master et ainsi de suite
+// et ensuite faire un git push
 
 
 
