@@ -31,8 +31,6 @@ class Model {
     }
 
 
-
-
     // Fonction Récupérer l'utilisateur connecté
     public function getUser() {
         $this->bddConnect();

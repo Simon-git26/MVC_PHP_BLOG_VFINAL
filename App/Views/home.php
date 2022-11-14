@@ -48,6 +48,13 @@
                     <p class="card-text"><?= $post['post_date_create']; ?></p>
 
                     <em><a href="index.php?action=post&id=<?php echo urlencode($post['post_id']) ?>">Affichage de mon post</a></em>
+
+                    <?php
+                    // Partie is_admin, activer les boutons si l'utilisateur connecté est un admin
+                    if ($username['is_admin'] === '1') { ?>
+                        <button type="button" class="btn btn-primary">Modifier</button>
+                    <?php } ?>
+                    
                 </div>
             </div>
         <?php
