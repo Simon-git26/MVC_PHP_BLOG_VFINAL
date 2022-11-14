@@ -66,7 +66,9 @@ $method = 'getBddData';
 // Si @param page est definis, alors sa valeur sera la valeur du param url
 if (isset($_GET['page']) && $_GET['page'] === 'home') {
     $page = $_GET['page'];
-} else if (isset($_GET['page']) &&  $_GET['page'] === 'login') {
+} else if (isset($_GET['page']) && $_GET['page'] === 'login') {
+    $page = $_GET['page'];
+} else if (isset($_GET['page']) && $_GET['page'] === 'post') {
     $page = $_GET['page'];
 }
 

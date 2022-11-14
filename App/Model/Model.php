@@ -15,7 +15,7 @@ class Model {
     }
 
 
-    // POSTS
+    // ************  POSTS  *************
     // Fonction pour récuperer tous mes posts
     public function getPosts() {
 
@@ -31,6 +31,8 @@ class Model {
     }
 
 
+
+    // *************  User  *****************
     // Fonction Récupérer l'utilisateur connecté
     public function getUser() {
         $this->bddConnect();
@@ -51,8 +53,6 @@ class Model {
         }
        
     }
-
-
 
 
 
@@ -87,37 +87,57 @@ class Model {
 
 
 
+    // ************  Comment  ***************
+    // Fonction récupérer tous mes comments
+    public function getComments() {
+        $this->bddConnect();
+        $request = self::$_database->query(
+            "SELECT comment_id, comment_user, comment_content, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%imin%ss') AS comment_date FROM comments WHERE post_id = 1 ORDER BY comment_date ASC LIMIT 0, 5"
+        );
+        $comments = $request->fetchAll();
+
+       /*
+        echo '</br>';
+        echo "**********DEBUG de mes commentaire ********";
+        echo '</br>';
+        var_dump($comments);
+        echo '</br>';
+        */
+
+
+        return $comments;
+    }
+    
+
+
+
    
 
 
 
    
     // Fonction pour récupérer un post selon son id
-   
-    /*public function getPostId($post_id) {
+    public function getPostId() {
+       
+        $this->bddConnect();
+        $request = self::$_database->query(
+            "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts WHERE post_id = 1"
+        );
+        $posts = $request->fetchAll();
+        return $posts;
+    }
+
+
+    // Fonction pour récupérer un post selon son id
+    /*
+    public function getPostId($post_id) {
        
         $this->bddConnect();
         $request = self::$_database->query(
             "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts WHERE post_id = ?"
         );
         $post = $request->fetchAll();
-        var_dump($post);
-        die();
         return $post;
-    }*/
-   
-
-
-
-    // Fonction pour récupérer tous mes comments
-    /*
-    public function getComments() {
-        $this->bddConnect();
-        $request = self::$_database->query(
-            "SELECT comment_id, comment_user, comment_content, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%imin%ss') AS comment_date FROM comments WHERE post_id = ? ORDER BY comment_date ASC LIMIT 0, 5"
-        );
-        $comments = $request->fetchAll();
-        return $comments;
     }
     */
 }
