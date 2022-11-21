@@ -1,4 +1,21 @@
 <?php
+session_start();
+?>
+
+<pre>
+    <?php
+        echo 'DEBUG pour la SESSION';
+        echo '</br>';
+        var_dump($_SESSION);
+        echo '</br>';
+        echo '</br>';
+        $_SESSION['role'] = 'administrateur';
+        echo '</br>';
+    ?>
+</pre>
+<?php
+
+
 
 // PB sur session qui ne se garde pas ouverte
 // Attention quand je post commentaire, rajout system verif admin +++ verif si user qui post comment existe en base ET est celui qui est connecté
@@ -25,9 +42,6 @@
 // et ensuite faire un git push
 
 
-
-// Initialiser la session
-session_start();
 
 // Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
 /*

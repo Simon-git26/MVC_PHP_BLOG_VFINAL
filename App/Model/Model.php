@@ -36,13 +36,18 @@ class Model {
     public function getPostId($get_by_id_post) {
        
         $this->bddConnect();
+        ?>
+        
+        <pre>
+            <?php
+            echo '******************** Requete getPostId pour id du post ******************';
+            echo '</br>';
+            var_dump("SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts WHERE post_id = '".$get_by_id_post."'");
+            echo '</br>';
+            ?>
+        </pre>
 
-        echo '******************** Requete getPostId pour id du post ******************';
-        echo '</br>';
-        var_dump("SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts WHERE post_id = '".$get_by_id_post."'");
-        echo '</br>';
-
-
+        <?php
         $request = self::$_database->query(
             "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts WHERE post_id = '".$get_by_id_post."'"
         );
@@ -71,12 +76,20 @@ class Model {
             $request = self::$_database->query(
                 "SELECT * FROM `users` WHERE username='$username' and password='".hash('sha256', $password)."'"
             );
-            $usernames = $request->fetchAll();
-            return $usernames;
+
+            $user = $request->fetchAll();
+            return $user[0];
         } else {
-            echo 'ne récupère pas le user connecté !!!!';
+            ?>
+        
+            <pre>
+                <?php
+                echo 'ne récupère pas le user connecté !!!!';
+                ?>
+            </pre>
+
+            <?php
         }
-       
     }
 
 
@@ -99,12 +112,20 @@ class Model {
             );
 
            
-            echo "****************DEBUG*****************";
-            echo '</br>';
-            echo 'affichage request';
-            echo '</br>';
-            var_dump($_REQUEST);
-            echo '</br>';
+            ?>
+        
+            <pre>
+                <?php
+                echo "****************DEBUG*****************";
+                echo '</br>';
+                echo 'affichage request';
+                echo '</br>';
+                var_dump($_REQUEST);
+                echo '</br>';
+                ?>
+            </pre>
+
+            <?php
         }
     }
    
@@ -120,23 +141,21 @@ class Model {
     // Récupérer tous mes comments
     public function getComments($get_comments) {
         $this->bddConnect();
+        ?>
+        
+        <pre>
+            <?php
+            echo '******************** Requete Comments par id du post ******************';
+            echo '</br>';
+            var_dump("SELECT comment_id, comment_user, comment_content, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%imin%ss') AS comment_date FROM comments WHERE post_id = $get_comments ORDER BY comment_date ASC LIMIT 0, 5");
+            ?>
+        </pre>
 
-        echo '******************** Requete Comments par id du post ******************';
-        echo '</br>';
-        var_dump("SELECT comment_id, comment_user, comment_content, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%imin%ss') AS comment_date FROM comments WHERE post_id = $get_comments ORDER BY comment_date ASC LIMIT 0, 5");
-
+        <?php
         $request = self::$_database->query(
             "SELECT comment_id, comment_user, comment_content, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%imin%ss') AS comment_date FROM comments WHERE post_id = $get_comments ORDER BY comment_date ASC LIMIT 0, 5"
         );
         $comments = $request->fetchAll();
-
-       
-        echo '</br>';
-        echo "**********DEBUG de mes commentaire ********";
-        echo '</br>';
-        var_dump($comments);
-        echo '</br>';
-        
         return $comments;
     }
 
@@ -151,29 +170,42 @@ class Model {
             $comment_user = stripslashes($_REQUEST['comment_user']);
             // récupérer le contenu du commentaire et supprimer les antislashes
             $comment_content = stripslashes($_REQUEST['comment_content']);
+            ?>
 
-            echo '</br>';
-            echo 'var_dump du POST COMMENT';
-            echo '</br>';
-            var_dump("INSERT into `comments` (post_id, comment_user, comment_content) VALUES ($get_post_id, '$comment_user', '$comment_content')");
-            echo '</br>';
-            echo '</br>';
-            echo '</br>';
-            echo '</br>';
-            
-            
+            <pre>
+                <?php
+                    echo '</br>';
+                    echo 'var_dump du POST COMMENT';
+                    echo '</br>';
+                    var_dump("INSERT into `comments` (post_id, comment_user, comment_content) VALUES ($get_post_id, '$comment_user', '$comment_content')");
+                    echo '</br>';
+                    echo '</br>';
+                    echo '</br>';
+                    echo '</br>';
+                ?>
+            </pre>
+
+            <?php
             //requéte SQL + mot de passe crypté
             $query = self::$_database->query(
                 "INSERT into `comments` (post_id, comment_user, comment_content) VALUES ($get_post_id, '$comment_user', '$comment_content')"
             );
 
            
-            echo "****************DEBUG*****************";
-            echo '</br>';
-            echo 'affichage request poster commentaire Model';
-            echo '</br>';
-            var_dump($_REQUEST);
-            echo '</br>';
+            ?>
+
+            <pre>
+                <?php
+                    echo "****************DEBUG*****************";
+                    echo '</br>';
+                    echo 'affichage request poster commentaire Model';
+                    echo '</br>';
+                    var_dump($_REQUEST);
+                    echo '</br>';
+                ?>
+            </pre>
+
+            <?php
         }
     }
 }

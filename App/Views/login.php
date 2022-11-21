@@ -5,9 +5,7 @@
         <link rel="stylesheet" href="../MVC_PHP_BLOG_VFINAL/App/public/style.css" />
     </head>
 
-    <?php
-    var_dump($_REQUEST);
-    ?>
+    
     <body>
         <form class="box" action="?page=home" method="post" name="login">
             <h1 class="box-title">Connexion</h1>

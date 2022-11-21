@@ -4,17 +4,24 @@
 
 			<!-- Infos User Connecté -->
 			<?php
-			foreach ($usernames as $username) {
+
+
+			var_dump($user);
+			echo '</br>';
+
+
+			if (!is_null($user) || isset($user)) {
 			?>
-			<img class="img-circle" src="App/public/assets/images/guy.jpg" alt="">
-			<span class="title"><?= $username['username'];?></span>
-			<span class="tagline">Developpeur Web<br>
-				<a href=""><?= $username['email'];?></a>
-			</span>
+				<img class="img-circle" src="App/public/assets/images/guy.jpg" alt="">
+				<span class="title"><?= $user['username'];?></span>
+				<span class="tagline">Developpeur Web<br>
+					<a href=""><?= $user['email'];?></a>
+				</span>
 			<?php
 			}
-			?>
 
+
+			?>
 		</h1>
 	</div>
 

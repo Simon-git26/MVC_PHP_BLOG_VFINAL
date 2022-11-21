@@ -22,12 +22,13 @@ class HomeController extends Controller {
 
         // Recuperer mon user connecté
         $this->_getUser = new ModelHome;
-        $usernames = $this->_getUser->getUser();
+        $user = $this->_getUser->getUser();
+
 
         // Création de tableau de données
         $arrayVariableHome = [
             'posts' => $posts,
-            'usernames' => $usernames,
+            'user' => $user,
         ];
 
         $this->render($arrayVariableHome, 'home');

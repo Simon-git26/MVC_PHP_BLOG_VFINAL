@@ -9,6 +9,13 @@ abstract class Controller {
     // J'extrait les données de $data
     // Je ferme la mémoire tampon  ob_get_clean();
     // Je require ma view
+    protected function isConnected() {
+
+    }
+
+
+
+
     protected function render($data, $view) {
         if (isset($data)) {
             ob_start();

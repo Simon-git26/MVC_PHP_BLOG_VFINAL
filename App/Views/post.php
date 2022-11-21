@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,28 +23,37 @@
 
 
     <body class="home">
+        <pre>
+            <?php
+            echo "**************************************DEBUG de ma SESSION persistante **************************";
+            echo '</br>';
+            var_dump($_SESSION);
+            echo '</br>';
+            ?>
+        </pre>
+
 
         <?php
         //Inclure mon header 
         require_once('header.php');
         ?>
 
-
-        <?php 
-        echo '</br>';
-        echo '***** GET *****';
-        echo '</br>';
-        var_dump($_GET);
-        echo '</br>';
-        echo '***** POST *****';
-        echo '</br>';
-        var_dump($_POST);
-        echo '</br>';
-        echo '***** REQUEST *****';
-        echo '</br>';
-        var_dump($_REQUEST);
-        echo '</br>';
-        ?>
+        <pre>
+            <?php
+                echo '</br>';
+                echo '</br>';
+                echo '***** POST *****';
+                echo '</br>';
+                var_dump($_POST);
+                echo '</br>';
+                echo '***** REQUEST *****';
+                echo '</br>';
+                var_dump($_REQUEST);
+                echo '</br>';
+            ?>
+        </pre>
+        
+       
         <main id="main">
             <div class="container">
                 <div class="row topspace">
@@ -130,9 +143,14 @@
                              -->
 
 
-                            <?php
-                            var_dump($_REQUEST);
-                            ?>
+                            <pre>
+                                <?php
+                                echo '$_REQUEST';
+                                echo '</br>';
+                                var_dump($_REQUEST);
+                                ?>
+                            </pre>
+                            
 
                             <!-- ************************ Formulaire pour poster un commentaire ******************** -->
                             <div id="respond">

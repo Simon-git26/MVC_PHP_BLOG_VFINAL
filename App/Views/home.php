@@ -53,7 +53,7 @@
                         <?php
                         foreach ($posts as $post) {
                         ?>
-                            <div class="col-sm-6 col-md-3" style="display: flex;flex-direction: column;align-items: center;">
+                            <div class="col-sm-6 col-md-3" style="display: flex;flex-direction: column;align-items: center;margin-bottom: 45px;">
                                 <!--  Infos de mon post  -->
                                 <h3 class="text-center"><?= $post['post_title']; ?></h3>
                                 <p><?= $post['post_content']; ?></p>

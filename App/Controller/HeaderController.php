@@ -15,12 +15,12 @@ class HeaderController extends Controller {
        
         // Recuperer mon user connecté
         $this->_header = new ModelHeader;
-        $usernames = $this->_header->getUser();
+        $user = $this->_header->getUser();
 
 
         // Création de tableau de données
         $arrayVariableHeader = [
-            'usernames' => $usernames,
+            'user' => $user,
         ];
 
         $this->render($arrayVariableHeader, 'header');
