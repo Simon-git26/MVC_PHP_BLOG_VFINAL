@@ -7,25 +7,30 @@ use App\Model\Model as ModelPost;
 
 
 class PostController extends Controller {
-    private $_post;
-
+    private $_postById;
+    private $_postComment;
+    private $_getComments;
+    
 
     // Instance de Model et recupération de getPosts()
     // Envoi de mon tableau $posts a ma view home
     public function getBddData() {
        
-        $this->_post = new ModelPost;
-        $posts = $this->_post->getPostId();
+        $this->_postById = new ModelPost;
+        $posts = $this->_postById->getPostId($_GET['post_id']);
 
-        echo 'DEBUG';
-        echo '</br>';
-        var_dump($posts);
+       
+
+        // Poster un commentaire
+        $this->_postComment = new ModelPost;
+        $this->_postComment->postComment($_GET['post_id']);
 
 
         // Recuperer mes commentaires
-        $this->_comment = new ModelPost;
-        $comments = $this->_comment->getComments();
-        
+        $this->_getComments = new ModelPost;
+        $comments = $this->_getComments->getComments($_GET['post_id']);
+
+
 
         $arrayVariablePost = [
             'posts' => $posts,

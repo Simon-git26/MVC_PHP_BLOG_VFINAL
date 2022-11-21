@@ -1,5 +1,15 @@
 <?php
 
+// PB sur session qui ne se garde pas ouverte
+// Attention quand je post commentaire, rajout system verif admin +++ verif si user qui post comment existe en base ET est celui qui est connecté
+// Sur la page permettant de modifier un blog post, l’utilisateur a la possibilité de modifier les champs titre, chapô, auteur et contenu.
+
+// Ajouter page permettant de modifier supprimer post pour admin
+
+
+
+
+
 // ******* Création de branche selon les issues *****
 
 // Pour crée une branch qui contient mes modifs, donc mon issue,
@@ -34,17 +44,15 @@ error_reporting(E_ALL);
 
 // Définir  ma root racine du projet
 define('ROOT', dirname(__DIR__.'/MVC_PHP_BLOG_VFINAL'));
-
 // echo ROOT;
 
 
 
-
 // Route de connection de register
-// http://localhost/MVC_PHP_BLOG_VFINAL/App/Views/register.php
+// http://localhost/MVC_PHP_BLOG_VFINAL/?page=register
 
 // Partie Boulot
-// http://localhost:8080/my-app/MVC_PHP_BLOG_VFINAL/aPP/Views/register.php
+// http://localhost:8080/my-app/MVC_PHP_BLOG_VFINAL/?page=register
 
 
 
@@ -55,22 +63,21 @@ App\Autoloader::spl_autoload();
 
 
 
-// Si @param page n'est pas definis, par default il sera a home
 $page = '';
 // Appéler la methode voulu, definit dans le HomeController
 $method = 'getBddData';
 
-// $action = 'post';
 
 
 // Si @param page est definis, alors sa valeur sera la valeur du param url
-if (isset($_GET['page']) && $_GET['page'] === 'home') {
-    $page = $_GET['page'];
-} else if (isset($_GET['page']) && $_GET['page'] === 'login') {
-    $page = $_GET['page'];
-} else if (isset($_GET['page']) && $_GET['page'] === 'post') {
-    $page = $_GET['page'];
+// if isset($_GET['page']) && $_GET['page'] === home ou login etc
+switch (isset($_GET['page']) && $_GET['page']) {
+    case 'home'     : $page = $_GET['page'];
+    case 'login'    : $page = $_GET['page'];
+    case 'post'     : $page = $_GET['page'];
+    case 'register' : $page = $_GET['page'];
 }
+
 
 
 if (isset($_GET['method'])) {
