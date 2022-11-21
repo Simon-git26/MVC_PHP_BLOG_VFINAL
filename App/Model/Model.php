@@ -33,7 +33,7 @@ class Model {
 
 
     // Récupérer un post selon son id
-    public function getPostId($get_by_id_post) {
+    public function getPostId($get_post_by_id) {
        
         $this->bddConnect();
         ?>
@@ -42,17 +42,18 @@ class Model {
             <?php
             echo '******************** Requete getPostId pour id du post ******************';
             echo '</br>';
-            var_dump("SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts WHERE post_id = '".$get_by_id_post."'");
+            var_dump("SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts WHERE post_id = '".$get_post_by_id."'");
             echo '</br>';
             ?>
         </pre>
 
         <?php
         $request = self::$_database->query(
-            "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts WHERE post_id = '".$get_by_id_post."'"
+            "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts WHERE post_id = '".$get_post_by_id."'"
         );
-        $posts = $request->fetchAll();
-        return $posts;
+
+        $post = $request->fetchAll();
+        return $post[0];
     }
 
 
@@ -67,6 +68,23 @@ class Model {
     public function getUser() {
         $this->bddConnect();
 
+
+        ?>
+        <pre>
+            <?php
+                echo '</br>';
+                echo '</br>';
+                echo 'requeste sur get User';
+                echo '</br>';
+                var_dump($_REQUEST);
+                echo '</br>';
+            ?>
+        </pre>
+        <?php
+
+
+        //Probleme sur condition du if, c'est normal que j'ai un pb de session
+        
         if (isset($_POST['username'])) {
             // récupérer le nom d'utilisateur
             $username = stripslashes($_REQUEST['username']);
@@ -81,13 +99,11 @@ class Model {
             return $user[0];
         } else {
             ?>
-        
             <pre>
                 <?php
                 echo 'ne récupère pas le user connecté !!!!';
                 ?>
             </pre>
-
             <?php
         }
     }

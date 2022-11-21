@@ -1,5 +1,7 @@
 <?php
+/*
 session_start();
+*/
 ?>
 
 <!DOCTYPE html>
@@ -23,14 +25,18 @@ session_start();
 
 
     <body class="home">
-        <pre>
+        <!--
+            <pre>
             <?php
+            /*
             echo "**************************************DEBUG de ma SESSION persistante **************************";
             echo '</br>';
             var_dump($_SESSION);
             echo '</br>';
+            */
             ?>
-        </pre>
+            </pre>
+        -->
 
 
         <?php
@@ -60,37 +66,35 @@ session_start();
                     <div class="col-sm-8 col-sm-offset-2">
                          
                         <!-- ***** POST ***** -->
-                        <?php
-                        foreach ($posts as $post) {
+
+                        <?php if (!is_null($post) || isset($post)) {
                         ?>
+                            <article class="post">
+                                <header class="entry-header">
+                                    <div class="entry-meta"> 
+                                        <span class="posted-on"><time class="entry-date published" date="2013-06-17"><?= $post['post_date_create']; ?></time></span>			
+                                    </div> 
+                                    <!--  Titre du post  -->
+                                    <h1 class="entry-title"><?= $post['post_title']; ?></h1>
+                                </header> 
+                                <div class="entry-content"> 
+                                    <!--  Images du post  -->
+                                    <p><img alt="" src="./App/public/assets/images/mac.jpg"></p>
+            
+                                    <!--  Date du post -->
+                                    <blockquote>
+                                        <p>Crée le : <?= $post['post_date_create']; ?></p>
+                                    </blockquote>
 
-                        <article class="post">
-                            <header class="entry-header">
-                                <div class="entry-meta"> 
-                                    <span class="posted-on"><time class="entry-date published" date="2013-06-17"><?= $post['post_date_create']; ?></time></span>			
+                                    <!--  Titre du post  -->
+                                    <h4><?= $post['post_title']; ?></h4>
+
+                                    <!--  Contenu du post  -->
+                                    <p>
+                                        <?= $post['post_content']; ?>
+                                    </p>
                                 </div> 
-                                <!--  Titre du post  -->
-                                <h1 class="entry-title"><?= $post['post_title']; ?></h1>
-                            </header> 
-                            <div class="entry-content"> 
-                                <!--  Images du post  -->
-                                <p><img alt="" src="./App/public/assets/images/mac.jpg"></p>
-        
-                                <!--  Date du post -->
-                                <blockquote>
-                                    <p>Crée le : <?= $post['post_date_create']; ?></p>
-                                </blockquote>
-
-                                <!--  Titre du post  -->
-                                <h4><?= $post['post_title']; ?></h4>
-
-                                <!--  Contenu du post  -->
-                                <p>
-                                    <?= $post['post_content']; ?>
-                                </p>
-                            </div> 
-                        </article>
-
+                            </article>
                         <?php
                         }
                         ?>

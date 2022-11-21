@@ -13,7 +13,7 @@ class HomeController extends Controller {
 
     // Instance de Model et recupération de getPosts() / getUser()
     // Envoi de mon tableau $posts a ma view home
-    public function getBddData() {
+    public function showView() {
        
         // Recuperer tous mes posts
         $this->_getPosts = new ModelHome;
@@ -24,13 +24,14 @@ class HomeController extends Controller {
         $this->_getUser = new ModelHome;
         $user = $this->_getUser->getUser();
 
-
         // Création de tableau de données
-        $arrayVariableHome = [
+        $arrayDataHome = [
             'posts' => $posts,
             'user' => $user,
         ];
 
-        $this->render($arrayVariableHome, 'home');
+        
+
+        $this->render($arrayDataHome, 'home');
     }
 }

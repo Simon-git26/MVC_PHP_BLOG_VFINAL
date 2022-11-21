@@ -30,15 +30,16 @@
                 <!--  Partie Login / Petite description et username  -->
                 <div class="row section topspace">
                     <div class="col-md-12">
-                        <?php
-                        foreach ($usernames as $username) {
+
+                        <?php if (!is_null($user) || isset($user)) {
                         ?>
-                            <p class="lead text-center text-muted">Bonjour <strong><?= $username['username'];?></strong>. Ceci est la page d'accueil, si vous souhaitez vous deconnecter, cliquer ici: <a href="App/Views/logout.php">Déconnexion</a></br> 
+                            <p class="lead text-center text-muted">Bonjour <strong><?= $user['username'];?></strong>. Ceci est la page d'accueil, si vous souhaitez vous deconnecter, cliquer ici: <a href="App/Views/logout.php">Déconnexion</a></br> 
                             Si vous souhaitez acceder a votre tableau de borde cliquer ici: <a href="sidebar-right.html">Tableau de bord</a>. </p>
-                        
                         <?php
                         }
                         ?>
+
+                        
                     </div>
                 </div>
 
@@ -67,7 +68,7 @@
 
                                 <?php
                                 // Partie is_admin, activer les boutons si l'utilisateur connecté est un admin
-                                if ($username['is_admin'] === '1') { ?>
+                                if ($user['is_admin'] === '1') { ?>
                                     <p class="text-center"><a href="" class="btn btn-action">Modifier</a></p>
                                 <?php } ?>
                             </div>

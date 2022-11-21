@@ -14,10 +14,10 @@ class PostController extends Controller {
 
     // Instance de Model et recupération de getPosts()
     // Envoi de mon tableau $posts a ma view home
-    public function getBddData() {
+    public function showView() {
        
         $this->_postById = new ModelPost;
-        $posts = $this->_postById->getPostId($_GET['post_id']);
+        $post = $this->_postById->getPostId($_GET['post_id']);
 
        
 
@@ -32,13 +32,13 @@ class PostController extends Controller {
 
 
 
-        $arrayVariablePost = [
-            'posts' => $posts,
+        $arrayDataPost = [
+            'post' => $post,
             'comments' => $comments,
         ];
 
 
-        $this->render($arrayVariablePost, 'post');
+        $this->render($arrayDataPost, 'post');
 
     }
 }
