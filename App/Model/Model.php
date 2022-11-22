@@ -9,7 +9,7 @@ class Model {
     private static $_database;
 
     // Connexion Base de donnée
-    private function bddConnect() {
+    private function connectDatabase() {
         self::$_database = new PDO('mysql:host=localhost;dbname=p5_mvc_php;charset=utf8', 'root', 'root');
         self::$_database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
@@ -21,7 +21,7 @@ class Model {
     // Récuperer tous mes posts
     public function getPosts() {
 
-        $this->bddConnect();
+        $this->connectDatabase();
 
         $request = self::$_database->query(
             "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts ORDER BY post_date_create ASC LIMIT 0, 5"
@@ -33,23 +33,23 @@ class Model {
 
 
     // Récupérer un post selon son id
-    public function getPostId($get_post_by_id) {
+    public function getPostId($getPostId) {
        
-        $this->bddConnect();
+        $this->connectDatabase();
         ?>
         
         <pre>
             <?php
             echo '******************** Requete getPostId pour id du post ******************';
             echo '</br>';
-            var_dump("SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts WHERE post_id = '".$get_post_by_id."'");
+            var_dump("SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts WHERE post_id = '".$getPostId."'");
             echo '</br>';
             ?>
         </pre>
 
         <?php
         $request = self::$_database->query(
-            "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts WHERE post_id = '".$get_post_by_id."'"
+            "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts WHERE post_id = '".$getPostId."'"
         );
 
         $post = $request->fetchAll();
@@ -66,7 +66,7 @@ class Model {
     //
     // Récupérer l'utilisateur connecté
     public function getUser() {
-        $this->bddConnect();
+        $this->connectDatabase();
 
 
         ?>
@@ -112,7 +112,7 @@ class Model {
 
     // Enregistrer un utilisateur
     public function registerUser() {
-        $this->bddConnect();
+        $this->connectDatabase();
 
         if (isset($_REQUEST['username'], $_REQUEST['email'], $_REQUEST['password'])){
             // récupérer le nom d'utilisateur et supprimer les antislashes
@@ -155,21 +155,21 @@ class Model {
     // ***********************************************  Comment  ****************************************
     //
     // Récupérer tous mes comments
-    public function getComments($get_comments) {
-        $this->bddConnect();
+    public function getComments($getComments) {
+        $this->connectDatabase();
         ?>
         
         <pre>
             <?php
             echo '******************** Requete Comments par id du post ******************';
             echo '</br>';
-            var_dump("SELECT comment_id, comment_user, comment_content, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%imin%ss') AS comment_date FROM comments WHERE post_id = $get_comments ORDER BY comment_date ASC LIMIT 0, 5");
+            var_dump("SELECT comment_id, comment_user, comment_content, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%imin%ss') AS comment_date FROM comments WHERE post_id = $getComments ORDER BY comment_date ASC LIMIT 0, 5");
             ?>
         </pre>
 
         <?php
         $request = self::$_database->query(
-            "SELECT comment_id, comment_user, comment_content, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%imin%ss') AS comment_date FROM comments WHERE post_id = $get_comments ORDER BY comment_date ASC LIMIT 0, 5"
+            "SELECT comment_id, comment_user, comment_content, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%imin%ss') AS comment_date FROM comments WHERE post_id = $getComments ORDER BY comment_date ASC LIMIT 0, 5"
         );
         $comments = $request->fetchAll();
         return $comments;
@@ -178,8 +178,8 @@ class Model {
 
     
     //Poster un commentaire
-    public function postComment($get_post_id) {
-        $this->bddConnect();
+    public function postComment($postComment) {
+        $this->connectDatabase();
 
         if (isset($_REQUEST['comment_user'], $_REQUEST['comment_content'])){
             // récupérer le nom du user qui commente et supprimer les antislashes
@@ -193,7 +193,7 @@ class Model {
                     echo '</br>';
                     echo 'var_dump du POST COMMENT';
                     echo '</br>';
-                    var_dump("INSERT into `comments` (post_id, comment_user, comment_content) VALUES ($get_post_id, '$comment_user', '$comment_content')");
+                    var_dump("INSERT into `comments` (post_id, comment_user, comment_content) VALUES ($postComment, '$comment_user', '$comment_content')");
                     echo '</br>';
                     echo '</br>';
                     echo '</br>';
@@ -204,7 +204,7 @@ class Model {
             <?php
             //requéte SQL + mot de passe crypté
             $query = self::$_database->query(
-                "INSERT into `comments` (post_id, comment_user, comment_content) VALUES ($get_post_id, '$comment_user', '$comment_content')"
+                "INSERT into `comments` (post_id, comment_user, comment_content) VALUES ($postComment, '$comment_user', '$comment_content')"
             );
 
            

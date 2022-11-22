@@ -12,7 +12,6 @@ session_start();
             echo '</br>';
         ?>
     </pre>
-
 <?php
 
 

@@ -30,8 +30,6 @@ class HomeController extends Controller {
             'user' => $user,
         ];
 
-        
-
         $this->render($arrayDataHome, 'home');
     }
 }
