@@ -43,21 +43,6 @@ session_start();
         //Inclure mon header 
         require_once('header.php');
         ?>
-
-        <pre>
-            <?php
-                echo '</br>';
-                echo '</br>';
-                echo '***** POST *****';
-                echo '</br>';
-                var_dump($_POST);
-                echo '</br>';
-                echo '***** REQUEST *****';
-                echo '</br>';
-                var_dump($_REQUEST);
-                echo '</br>';
-            ?>
-        </pre>
         
        
         <main id="main">

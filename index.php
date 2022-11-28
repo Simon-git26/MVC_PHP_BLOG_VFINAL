@@ -1,7 +1,7 @@
 <?php
 session_start();
 ?>
-<pre>
+    <pre>
         <?php
             echo 'DEBUG pour la SESSION et POST';
             echo '</br>';

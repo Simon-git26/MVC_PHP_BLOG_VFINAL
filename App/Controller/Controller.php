@@ -6,19 +6,20 @@ use App\Model\Model as ModelHeader;
 
 abstract class Controller {
 
-    /*
-    protected function isConnected($data, $view){
-        if (isset($data)) {
-            ob_start();
-            extract($data);
-            ob_get_clean();
-            require_once ROOT.'/App/Views/'.$view.'.php';
-        } else {
-            throw new \Exception("Données ".$data." introuvables", 1);
-        }
-    }
-    */
+    private $_getUser;
 
+    protected function is_Connected() {
+        // Recuperer mon user connecté
+        $this->_getUser = new ModelHeader;
+        $user = $this->_getUser->getUser();
+
+        // Création de tableau de données
+        $arrayDataHeader = [
+            'user' => $user,
+        ];
+
+        $this->render($arrayDataHeader, 'header');
+    }
 
 
     // Render() -> récupérer mes données et les transmettre a la view voulu

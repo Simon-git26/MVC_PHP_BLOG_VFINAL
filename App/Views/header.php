@@ -3,11 +3,15 @@
 		<h1 id="logo" class="text-center">
 
 			<!-- Infos User Connecté -->
+			<pre>
+				<?php
+					echo 'variable user pour le header';
+					echo '</br>';
+					var_dump($user);
+					echo '</br>';
+				?>
+			</pre>
 			<?php
-
-
-			var_dump($user);
-			echo '</br>';
 
 
 			if (!is_null($user) || isset($user)) {

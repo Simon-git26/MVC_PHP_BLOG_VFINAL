@@ -36,6 +36,7 @@ class Model {
     public function getPostId($getPostId) {
        
         $this->connectDatabase();
+        /*
         ?>
         
         <pre>
@@ -48,6 +49,7 @@ class Model {
         </pre>
 
         <?php
+        */
         $request = self::$_database->query(
             "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts WHERE post_id = '".$getPostId."'"
         );
@@ -60,7 +62,6 @@ class Model {
 
 
 
-
     //
     // ****************************************  User  ****************************************
     //
@@ -68,23 +69,6 @@ class Model {
     public function getUser() {
         $this->connectDatabase();
 
-
-        ?>
-        <pre>
-            <?php
-                echo '</br>';
-                echo '</br>';
-                echo 'requeste sur get User';
-                echo '</br>';
-                var_dump($_REQUEST);
-                echo '</br>';
-            ?>
-        </pre>
-        <?php
-
-
-        //Probleme sur condition du if, c'est normal que j'ai un pb de session
-        
         if (isset($_POST['username'])) {
             // récupérer le nom d'utilisateur
             $username = stripslashes($_REQUEST['username']);
@@ -96,15 +80,53 @@ class Model {
             );
 
             $user = $request->fetchAll();
-            return $user[0];
-        } else {
+
+            $_SESSION['auth'] = $_POST['username'];
+
+            /*
             ?>
             <pre>
                 <?php
-                echo 'ne récupère pas le user connecté !!!!';
+                    echo '</br>';
+                    echo 'condition if';
+                    echo '</br>';
+                    var_dump($user[0]);
+                    echo '</br>';
                 ?>
             </pre>
             <?php
+            */
+
+            if (is_null($user[0])) {
+                header("Location: ?page=login");
+            }
+
+            return $user[0];
+
+        } else {
+            $username = $_SESSION['auth'];
+
+            $request = self::$_database->query(
+                "SELECT * FROM `users` WHERE username='$username'"
+            );
+
+            $user = $request->fetchAll();
+
+            /*
+            ?>
+            <pre>
+                <?php
+                    echo '</br>';
+                    echo 'condition else';
+                    echo '</br>';
+                    var_dump($user[0]);
+                    echo '</br>';
+                ?>
+            </pre>
+            <?php
+            */
+
+            return $user[0];
         }
     }
 
@@ -157,6 +179,7 @@ class Model {
     // Récupérer tous mes comments
     public function getComments($getComments) {
         $this->connectDatabase();
+        /*
         ?>
         
         <pre>
@@ -168,6 +191,7 @@ class Model {
         </pre>
 
         <?php
+        */
         $request = self::$_database->query(
             "SELECT comment_id, comment_user, comment_content, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%imin%ss') AS comment_date FROM comments WHERE post_id = $getComments ORDER BY comment_date ASC LIMIT 0, 5"
         );
