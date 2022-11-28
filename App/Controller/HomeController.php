@@ -12,7 +12,6 @@ class HomeController extends Controller {
 
 
     // Instance de Model et recupération de getPosts() / getUser()
-    // Envoi de mon tableau $posts a ma view home
     public function showView() {
        
         // Recuperer tous mes posts

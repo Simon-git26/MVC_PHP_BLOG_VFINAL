@@ -13,13 +13,12 @@ class PostController extends Controller {
     
 
     // Instance de Model et recupération de getPosts()
-    // Envoi de mon tableau $posts a ma view home
     public function showView() {
        
+        // Récuperer un post selon son id
         $this->_postById = new ModelPost;
         $post = $this->_postById->getPostId($_GET['post_id']);
 
-       
 
         // Poster un commentaire
         $this->_postComment = new ModelPost;
