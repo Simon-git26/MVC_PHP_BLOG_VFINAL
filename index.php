@@ -1,5 +1,6 @@
 <?php
 session_start();
+/*
 ?>
     <pre>
         <?php
@@ -12,6 +13,7 @@ session_start();
         ?>
     </pre>
 <?php
+*/
 
 // Affichage All de mes erreurs
 ini_set('display_error', 'On');

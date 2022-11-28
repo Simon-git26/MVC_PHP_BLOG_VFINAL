@@ -14,6 +14,8 @@ class PostController extends Controller {
 
     // Instance de Model et recupération de getPosts()
     public function showView() {
+        // Appélé ma fonction is_Connected pour transmettre mon user connecté au header
+        $this->is_Connected();
        
         // Récuperer un post selon son id
         $this->_postById = new ModelPost;

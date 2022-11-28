@@ -9,16 +9,17 @@ abstract class Controller {
     private $_getUser;
 
     protected function is_Connected() {
+
         // Recuperer mon user connecté
         $this->_getUser = new ModelHeader;
         $user = $this->_getUser->getUser();
 
         // Création de tableau de données
-        $arrayDataHeader = [
+        $arrayUserConnected = [
             'user' => $user,
         ];
 
-        $this->render($arrayDataHeader, 'header');
+        $this->render($arrayUserConnected, 'header');
     }
 
 

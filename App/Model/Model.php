@@ -83,20 +83,6 @@ class Model {
 
             $_SESSION['auth'] = $_POST['username'];
 
-            /*
-            ?>
-            <pre>
-                <?php
-                    echo '</br>';
-                    echo 'condition if';
-                    echo '</br>';
-                    var_dump($user[0]);
-                    echo '</br>';
-                ?>
-            </pre>
-            <?php
-            */
-
             if (is_null($user[0])) {
                 header("Location: ?page=login");
             }
@@ -111,20 +97,6 @@ class Model {
             );
 
             $user = $request->fetchAll();
-
-            /*
-            ?>
-            <pre>
-                <?php
-                    echo '</br>';
-                    echo 'condition else';
-                    echo '</br>';
-                    var_dump($user[0]);
-                    echo '</br>';
-                ?>
-            </pre>
-            <?php
-            */
 
             return $user[0];
         }
