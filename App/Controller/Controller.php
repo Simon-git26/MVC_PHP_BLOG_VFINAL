@@ -6,17 +6,17 @@ use App\Model\Model as ModelHeader;
 
 abstract class Controller {
 
-    private $_getUser;
+    private $_user;
 
-    protected function is_Connected() {
+    protected function showViewHeader() {
 
         // Recuperer mon user connecté
-        $this->_getUser = new ModelHeader;
-        $user = $this->_getUser->getUser();
+        $this->_user = new ModelHeader;
+        $getUser = $this->_user->getUser();
 
         // Création de tableau de données
         $arrayUserConnected = [
-            'user' => $user,
+            'getUser' => $getUser,
         ];
 
         $this->render($arrayUserConnected, 'header');

@@ -45,6 +45,7 @@ switch (isset($_GET['page']) && $_GET['page']) {
     case 'login'    : $page = $_GET['page'];
     case 'post'     : $page = $_GET['page'];
     case 'register' : $page = $_GET['page'];
+    case 'blog'     : $page = $_GET['page'];
 }
 
 

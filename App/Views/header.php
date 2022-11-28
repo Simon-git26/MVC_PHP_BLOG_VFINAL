@@ -3,28 +3,16 @@
 		<h1 id="logo" class="text-center">
 
 			<!-- Infos User Connecté -->
-			<pre>
-				<?php
-					echo 'variable user pour le header';
-					echo '</br>';
-					var_dump($user);
-					echo '</br>';
-				?>
-			</pre>
 			<?php
-
-
-			if (!is_null($user) || isset($user)) {
+			if (!is_null($getUser) || isset($getUser)) {
 			?>
 				<img class="img-circle" src="App/public/assets/images/guy.jpg" alt="">
-				<span class="title"><?= $user['username'];?></span>
+				<span class="title"><?= $getUser['username'];?></span>
 				<span class="tagline">Developpeur Web<br>
-					<a href=""><?= $user['email'];?></a>
+					<a href=""><?= $getUser['email'];?></a>
 				</span>
 			<?php
 			}
-
-
 			?>
 		</h1>
 	</div>
@@ -41,7 +29,7 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="?page=home">Accueil</a></li>
 					<li><a href="?page=home">A Propos</a></li>
-					<li><a href="?page=home">Blog</a></li>
+					<li><a href="?page=blog">Blog</a></li>
 				</ul>
 			
 			</div>		

@@ -31,9 +31,9 @@
                 <div class="row section topspace">
                     <div class="col-md-12">
 
-                        <?php if (!is_null($user) || isset($user)) {
+                        <?php if (!is_null($getUser) || isset($getUser)) {
                         ?>
-                            <p class="lead text-center text-muted">Bonjour <strong><?= $user['username'];?></strong>. Ceci est la page d'accueil, si vous souhaitez vous deconnecter, cliquer ici: <a href="App/Views/logout.php">Déconnexion</a></br> 
+                            <p class="lead text-center text-muted">Bonjour <strong><?= $getUser['username'];?></strong>. Ceci est la page d'accueil, si vous souhaitez vous deconnecter, cliquer ici: <a href="App/Views/logout.php">Déconnexion</a></br> 
                             Si vous souhaitez acceder a votre tableau de borde cliquer ici: <a href="sidebar-right.html">Tableau de bord</a>. </p>
                         <?php
                         }
@@ -52,7 +52,7 @@
                     
                         <!-- Affichage de mes posts -->
                         <?php
-                        foreach ($posts as $post) {
+                        foreach ($getPosts as $post) {
                         ?>
                             <div class="col-sm-6 col-md-3" style="display: flex;flex-direction: column;align-items: center;margin-bottom: 45px;">
                                 <!--  Infos de mon post  -->
@@ -61,14 +61,15 @@
                                 <p><?= $post['post_date_create']; ?></p>
 
                                 <!--  Affichage de mon post unitaire -->
-                                <form class="box" action="?page=post&post_id=<?=urlencode($post['post_id']) ?>" method="post" name="post">
+                                <form class="box" action="?page=post" method="post" name="post">
                                     <input type="submit" value="Affichage de mon post" name="submit" class="btn btn-action">
+                                    <input type="hidden" name="post_id" value="<?=urlencode($post['post_id']) ?>">
                                 </form>
 
 
                                 <?php
                                 // Partie is_admin, activer les boutons si l'utilisateur connecté est un admin
-                                if ($user['is_admin'] === '1') { ?>
+                                if ($getUser['is_admin'] === '1') { ?>
                                     <p class="text-center"><a href="" class="btn btn-action">Modifier</a></p>
                                 <?php } ?>
                             </div>

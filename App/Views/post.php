@@ -25,18 +25,20 @@ session_start();
 
 
     <body class="home">
-        <!--
+        
             <pre>
-            <?php
-            /*
-            echo "**************************************DEBUG de ma SESSION persistante **************************";
-            echo '</br>';
-            var_dump($_SESSION);
-            echo '</br>';
-            */
-            ?>
+                <?php
+                
+                echo "**************************************DEBUG de ma SESSION persistante **************************";
+                echo '</br>';
+                var_dump($_POST);
+                echo '</br>';
+                var_dump($_GET);
+                echo '</br>';
+                
+                ?>
             </pre>
-        -->
+        
 
 
         <?php
@@ -52,15 +54,15 @@ session_start();
                          
                         <!-- ***** POST ***** -->
 
-                        <?php if (!is_null($post) || isset($post)) {
+                        <?php if (!is_null($getPost) || isset($getPost)) {
                         ?>
                             <article class="post">
                                 <header class="entry-header">
                                     <div class="entry-meta"> 
-                                        <span class="posted-on"><time class="entry-date published" date="2013-06-17"><?= $post['post_date_create']; ?></time></span>			
+                                        <span class="posted-on"><time class="entry-date published" date="2013-06-17"><?= $getPost['post_date_create']; ?></time></span>			
                                     </div> 
                                     <!--  Titre du post  -->
-                                    <h1 class="entry-title"><?= $post['post_title']; ?></h1>
+                                    <h1 class="entry-title"><?= $getPost['post_title']; ?></h1>
                                 </header> 
                                 <div class="entry-content"> 
                                     <!--  Images du post  -->
@@ -68,15 +70,15 @@ session_start();
             
                                     <!--  Date du post -->
                                     <blockquote>
-                                        <p>Crée le : <?= $post['post_date_create']; ?></p>
+                                        <p>Crée le : <?= $getPost['post_date_create']; ?></p>
                                     </blockquote>
 
                                     <!--  Titre du post  -->
-                                    <h4><?= $post['post_title']; ?></h4>
+                                    <h4><?= $getPost['post_title']; ?></h4>
 
                                     <!--  Contenu du post  -->
                                     <p>
-                                        <?= $post['post_content']; ?>
+                                        <?= $getPost['post_content']; ?>
                                     </p>
                                 </div> 
                             </article>
@@ -97,7 +99,7 @@ session_start();
 
                             <ol class="comments-list">
                                 <?php
-                                foreach ($comments as $comment) {
+                                foreach ($getComments as $comment) {
                                 ?>
                                     <li class="comment">
                                         <div>
@@ -146,7 +148,7 @@ session_start();
                                 <h3 id="reply-title">Poster un commentaire</h3>
 
 
-                                <form action="?page=post&post_id=<?=urlencode($_GET['post_id']) ?>" method="post" id="comment-form" name="post_comment">
+                                <form action="?page=post" method="post" id="comment-form" name="post_comment">
 
                                     <div class="form-group">
                                         <label for="inputName">Nom</label>
@@ -167,6 +169,7 @@ session_start();
                                         <div class="col-md-12 text-right">
                                             <!--<button type="submit" class="btn btn-action">Envoyer</button>-->
                                             <input type="submit" value="Envoyer" name="submit" class="btn btn-action">
+                                            <input type="hidden" name="post_id" value="<?=urlencode($_POST['post_id']) ?>">
                                         </div>
                                     </div>
                                 </form>

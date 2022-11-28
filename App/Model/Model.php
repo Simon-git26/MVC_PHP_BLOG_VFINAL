@@ -23,13 +23,21 @@ class Model {
 
         $this->connectDatabase();
 
-        $request = self::$_database->query(
-            "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts ORDER BY post_date_create ASC LIMIT 0, 5"
-        );
-
+        // Si home requetes avec limit sinon (blog) tous les posts
+        if ($_GET['page'] === 'home') {
+            $request = self::$_database->query(
+                "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts ORDER BY post_date_create ASC LIMIT 0, 4"
+            );
+        } else {
+            $request = self::$_database->query(
+                "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts ORDER BY post_date_create ASC"
+            );
+        }
+        
         $posts = $request->fetchAll();
         return $posts;
     }
+
 
 
     // Récupérer un post selon son id
@@ -203,21 +211,8 @@ class Model {
                 "INSERT into `comments` (post_id, comment_user, comment_content) VALUES ($postComment, '$comment_user', '$comment_content')"
             );
 
-           
-            ?>
 
-            <pre>
-                <?php
-                    echo "****************DEBUG*****************";
-                    echo '</br>';
-                    echo 'affichage request poster commentaire Model';
-                    echo '</br>';
-                    var_dump($_REQUEST);
-                    echo '</br>';
-                ?>
-            </pre>
-
-            <?php
+            header("Location: ?page=home");
         }
     }
 }

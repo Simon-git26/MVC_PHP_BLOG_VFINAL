@@ -7,26 +7,27 @@ use App\Model\Model as ModelHome;
 
 
 class HomeController extends Controller {
-    private $_getPosts;
-    private $_getUser;
+    private $_posts;
+    private $_user;
 
 
     // Instance de Model et recupération de getPosts() / getUser()
     public function showView() {
+        $this->showViewHeader();
        
         // Recuperer tous mes posts
-        $this->_getPosts = new ModelHome;
-        $posts = $this->_getPosts->getPosts();
+        $this->_posts = new ModelHome;
+        $getPosts = $this->_posts->getPosts();
 
 
         // Recuperer mon user connecté
-        $this->_getUser = new ModelHome;
-        $user = $this->_getUser->getUser();
+        $this->_user = new ModelHome;
+        $getUser = $this->_user->getUser();
 
         // Création de tableau de données
         $arrayDataHome = [
-            'posts' => $posts,
-            'user' => $user,
+            'getPosts' => $getPosts,
+            'getUser' => $getUser,
         ];
 
         $this->render($arrayDataHome, 'home');
