@@ -41,10 +41,7 @@ session_start();
         
 
 
-        <?php
-        //Inclure mon header 
-        require_once('header.php');
-        ?>
+        
         
        
         <main id="main">

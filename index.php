@@ -41,11 +41,12 @@ $method = 'showView';
 // Si @param page est definis, alors sa valeur sera la valeur du param url
 // if isset($_GET['page']) && $_GET['page'] === home ou login etc
 switch (isset($_GET['page']) && $_GET['page']) {
-    case 'home'     : $page = $_GET['page'];
-    case 'login'    : $page = $_GET['page'];
-    case 'post'     : $page = $_GET['page'];
-    case 'register' : $page = $_GET['page'];
-    case 'blog'     : $page = $_GET['page'];
+    case 'home'         : $page = $_GET['page'];
+    case 'login'        : $page = $_GET['page'];
+    case 'post'         : $page = $_GET['page'];
+    case 'register'     : $page = $_GET['page'];
+    case 'blog'         : $page = $_GET['page'];
+    case 'create'   : $page = $_GET['page'];
 }
 
 
