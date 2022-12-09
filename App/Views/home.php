@@ -18,12 +18,6 @@
     </head>
 
     <body class="home">
-        <?php
-        //Inclure mon header 
-        require_once('header.php');
-        ?>
-
-
         <main id="main">
             <div class="container">
                 

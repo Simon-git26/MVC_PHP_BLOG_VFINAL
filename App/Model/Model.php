@@ -67,8 +67,34 @@ class Model {
     }
 
 
+    // Création d'un Post
+    public function createPost() {
+        $this->connectDatabase();
 
+        if (isset($_REQUEST['title_post'], $_REQUEST['content_post'])){
+            $title_post = stripslashes($_REQUEST['title_post']);
+            $content_post = stripslashes($_REQUEST['content_post']);
+            ?>
 
+            <pre>
+                <?php
+                    echo '</br>';
+                    echo 'var_dump du create post';
+                    echo '</br>';
+                    var_dump("INSERT into `posts` (post_title, post_content) VALUES ('$title_post', '$content_post')");
+                    echo '</br>';
+                    echo '</br>';
+                    echo '</br>';
+                ?>
+            </pre>
+
+            <?php
+            //requéte SQL + mot de passe crypté
+            $query = self::$_database->query(
+                "INSERT into `posts` (post_title, post_content) VALUES ('$title_post', '$content_post')"
+            );
+        }
+    }
 
     //
     // ****************************************  User  ****************************************
