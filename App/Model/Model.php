@@ -100,6 +100,7 @@ class Model {
         if (isset($_REQUEST['title_post'], $_REQUEST['content_post'])){
             $title_post = stripslashes($_REQUEST['title_post']);
             $content_post = stripslashes($_REQUEST['content_post']);
+            $user_id = $_SESSION['user_id'];
             ?>
 
             <pre>
@@ -107,7 +108,7 @@ class Model {
                     echo '</br>';
                     echo 'var_dump du create post';
                     echo '</br>';
-                    var_dump("INSERT into `posts` (post_title, post_content) VALUES ('$title_post', '$content_post')");
+                    var_dump("INSERT into `posts` (post_title, post_content, user_id) VALUES ('$title_post', '$content_post', $user_id)");
                     echo '</br>';
                     echo '</br>';
                     echo '</br>';
@@ -117,7 +118,7 @@ class Model {
             <?php
             //requéte SQL + mot de passe crypté
             $query = self::$_database->query(
-                "INSERT into `posts` (post_title, post_content) VALUES ('$title_post', '$content_post')"
+                "INSERT into `posts` (post_title, post_content, user_id) VALUES ('$title_post', '$content_post', $user_id)"
             );
         }
     }
@@ -142,6 +143,7 @@ class Model {
             $user = $request->fetchAll();
 
             $_SESSION['auth'] = $_POST['username'];
+            $_SESSION['user_id'] = $user[0][0];
 
             if (is_null($user[0])) {
                 header("Location: ?page=login");
