@@ -46,7 +46,7 @@
                 
                 
                 <div class="row section featured topspace">
-                    <h2 class="section-title"><span>Liste des posts</span></h2>
+                    <h2 class="section-title"><span>Les 4 derniers posts</span></h2>
 
                     <div class="row">
                     

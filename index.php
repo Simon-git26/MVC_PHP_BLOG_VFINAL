@@ -1,19 +1,5 @@
 <?php
 session_start();
-/*
-?>
-    <pre>
-        <?php
-            echo 'DEBUG pour la SESSION et POST';
-            echo '</br>';
-            var_dump($_SESSION);
-            echo '</br>';
-            var_dump($_POST);
-            echo '</br>';
-        ?>
-    </pre>
-<?php
-*/
 
 // Affichage All de mes erreurs
 ini_set('display_error', 'On');
