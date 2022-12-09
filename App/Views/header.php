@@ -30,11 +30,8 @@
 					<li class="active"><a href="?page=home">Accueil</a></li>
 					<li><a href="?page=home">A Propos</a></li>
 					<li><a href="?page=blog">Blog</a></li>
-<<<<<<< HEAD
-					<li><a href="?page=createPost">Ajouter Post</a></li>
-=======
 					<li><a href="?page=create">Ajouter Post</a></li>
->>>>>>> addPost
+
 				</ul>
 			
 			</div>		

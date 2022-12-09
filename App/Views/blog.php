@@ -71,6 +71,7 @@
                                     <h3 class="text-center"><?= $post['post_title']; ?></h3>
                                 </header>
                                 <div class="entry-content">
+                                    <h4 class="text-center">Crée par <?= $post['username']; ?></h4>
                                     <p><?= $post['post_content']; ?></p>
 
                                     <!--  Affichage de mon post unitaire -->

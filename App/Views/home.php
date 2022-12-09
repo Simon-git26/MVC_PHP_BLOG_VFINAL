@@ -51,6 +51,7 @@
                             <div class="col-sm-6 col-md-3" style="display: flex;flex-direction: column;align-items: center;margin-bottom: 45px;">
                                 <!--  Infos de mon post  -->
                                 <h3 class="text-center"><?= $post['post_title']; ?></h3>
+                                <h4 class="text-center">Crée par <?= $post['username']; ?></h4>
                                 <p><?= $post['post_content']; ?></p>
                                 <p><?= $post['post_date_create']; ?></p>
 

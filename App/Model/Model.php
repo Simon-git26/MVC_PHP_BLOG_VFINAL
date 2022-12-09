@@ -26,15 +26,41 @@ class Model {
         // Si home requetes avec limit sinon (blog) tous les posts
         if ($_GET['page'] === 'home') {
             $request = self::$_database->query(
-                "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts ORDER BY post_date_create ASC LIMIT 0, 4"
+                "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create, users.username FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY post_date_create ASC LIMIT 0, 4"
             );
         } else {
             $request = self::$_database->query(
-                "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts ORDER BY post_date_create ASC"
+                "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create, users.username FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY post_date_create ASC"
             );
+
+            ?>
+                <pre>
+                    <?php
+                        echo "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create, users.username FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY post_date_create ASC";
+                        echo '</br>';
+                        echo '</br>';
+                        echo '</br>';
+                        var_dump($request);
+                        echo '</br>';
+                        echo '</br>';
+                    ?>
+                </pre>
+            <?php
         }
         
         $posts = $request->fetchAll();
+
+        ?>
+            <pre>
+                <?php
+                    echo '</br>';
+                    var_dump($posts);
+                    echo '</br>';
+                    echo '</br>';
+                ?>
+            </pre>
+        <?php
+
         return $posts;
     }
 
