@@ -8,6 +8,7 @@ use App\Model\Model as ModelCreate;
 
 class CreateController extends Controller {
     private $_user;
+    private $_createPost;
 
 
     // Instance de Model et recupération de getPosts() / getUser()
@@ -20,10 +21,38 @@ class CreateController extends Controller {
         $getUser = $this->_user->getUser();
 
         // Création de tableau de données
-        $arrayDataHome = [
+        $arrayDataCreatePost = [
             'getUser' => $getUser,
         ];
 
-        $this->render($arrayDataHome, 'createPost');
+        $this->postCreate();
+
+        $this->render($arrayDataCreatePost, 'createPost');
     }
+
+
+    // Créer un Commentaire
+    public function postCreate() {
+        $this->_createPost = new ModelCreate;
+        $this->_createPost->createPost();
+    }
+
+
+
+
+    /*
+    class CreateController extends Controller {
+        private $_createPost;
+    
+    
+        public function showView() {
+            $this->showViewHeader();
+           
+            $this->_createPost = new ModelCreate;
+            $this->_createPost->createPost();
+    
+            $this->render([], 'createPost');
+        }
+    }
+    */
 }
