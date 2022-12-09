@@ -85,7 +85,7 @@ class Model {
         <?php
         */
         $request = self::$_database->query(
-            "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts WHERE post_id = '".$getPostId."'"
+            "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create, users.username FROM posts INNER JOIN users ON posts.user_id = users.id WHERE post_id = '".$getPostId."'"
         );
 
         $post = $request->fetchAll();

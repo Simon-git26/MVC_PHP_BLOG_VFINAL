@@ -65,9 +65,9 @@ session_start();
                                     <!--  Images du post  -->
                                     <p><img alt="" src="./App/public/assets/images/mac.jpg"></p>
             
-                                    <!--  Date du post -->
+                                    <!--  Date du post et utilisateur -->
                                     <blockquote>
-                                        <p>Crée le : <?= $getPost['post_date_create']; ?></p>
+                                        <p>Crée le : <?= $getPost['post_date_create']; ?> Par : <?= $getPost['username']; ?></p>
                                     </blockquote>
 
                                     <!--  Titre du post  -->
