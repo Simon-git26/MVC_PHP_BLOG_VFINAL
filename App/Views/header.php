@@ -8,9 +8,16 @@
 			?>
 				<img class="img-circle" src="App/public/assets/images/guy.jpg" alt="">
 				<span class="title"><?= $getUser['username'];?> <?= $getUser['firstname'];?></span>
-				<span class="tagline">Developpeur Web<br>
-					<a href=""><?= $getUser['email'];?></a>
+				
+				<span class="tagline"><?= $getUser['slogan'];?></br>
+					<p>Pour consultez mon CV:<a href="./App/public/doc/CV_SIMON_BALLEUX-PRUVOST-compressé.pdf" target="_blank" style="color:#bd1550;"> Cliquez Ici</a></p>
 				</span>
+				<p style="font-size: 2rem;">Pour me suivre: 
+					<a href=""><i class="fa fa-twitter fa-2"></i></a>
+					<a href=""><i class="fa fa-dribbble fa-2"></i></a>
+					<a href=""><i class="fa fa-github fa-2"></i></a>
+					<a href=""><i class="fa fa-facebook fa-2"></i></a>
+				</p>
 			<?php
 			}
 			?>
