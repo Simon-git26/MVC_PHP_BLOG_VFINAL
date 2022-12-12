@@ -8,6 +8,7 @@ use App\Model\Model as ModelBlog;
 
 class BlogController extends Controller {
     private $_posts;
+    private $_user;
 
 
     // Instance de Model et recupération de getPosts() / getUser()
@@ -18,9 +19,14 @@ class BlogController extends Controller {
         $this->_posts = new ModelBlog;
         $getPosts = $this->_posts->getPosts();
 
+        // Recuperer mon user connecté
+        $this->_user = new ModelBlog;
+        $getUser = $this->_user->getUser();
+
         // Création de tableau de données
         $arrayDataBlog = [
-            'getPosts' => $getPosts
+            'getPosts' => $getPosts,
+            'getUser' => $getUser
         ];
 
         $this->render($arrayDataBlog, 'blog');

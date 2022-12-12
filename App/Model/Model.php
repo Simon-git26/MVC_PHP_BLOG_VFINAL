@@ -97,6 +97,47 @@ class Model {
     }
 
 
+
+
+    // Modifier un Post
+    public function editPost($post_id) {
+        $this->connectDatabase();
+
+        echo 'voici mon dump';
+        echo '</br>';
+        var_dump($_REQUEST);
+        echo '</br>';
+        echo '</br>';
+
+        if (isset($_REQUEST['title_post_edit'], $_REQUEST['content_post_edit'], $_REQUEST['users'])){
+            $title_post_edit = stripslashes($_REQUEST['title_post_edit']);
+            $content_post_edit = stripslashes($_REQUEST['content_post_edit']);
+
+            $user_id = stripslashes($_REQUEST['users']);
+            ?>
+
+            <pre>
+                <?php
+                    echo '</br>';
+                    echo 'var_dump du edit post';
+                    echo '</br>';
+                    var_dump("UPDATE `posts` SET post_title='".$title_post_edit."', post_content='".$content_post_edit."', user_id=$user_id WHERE post_id=$post_id");
+                    echo '</br>';
+                    echo '</br>';
+                    echo '</br>';
+                ?>
+            </pre>
+
+            <?php
+            //requéte SQL + mot de passe crypté
+            $query = self::$_database->query(
+                "UPDATE `posts` SET post_title='".$title_post_edit."', post_content='".$content_post_edit."', user_id=$user_id WHERE post_id=$post_id"
+            );
+        }
+    }
+
+
+
     // Création d'un Post
     public function createPost() {
         $this->connectDatabase();
@@ -166,6 +207,19 @@ class Model {
 
             return $user[0];
         }
+    }
+
+
+    // Récuperer tous mes Users pour liste déroulante dans editPost
+    public function getUsers() {
+        $this->connectDatabase();
+
+        $request = self::$_database->query(
+            "SELECT id, username, firstname FROM `users`"
+        );
+
+        $users = $request->fetchAll();
+        return $users;
     }
 
 

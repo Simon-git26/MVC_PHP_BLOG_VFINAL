@@ -37,15 +37,10 @@ session_start();
                         ?>
                             <article class="post">
                                 <header class="entry-header">
-                                    <div class="entry-meta"> 
-                                        <span class="posted-on"><time class="entry-date published" date="2013-06-17"><?= $getPost['post_date_create']; ?></time></span>			
-                                    </div> 
                                     <!--  Titre du post  -->
                                     <h1 class="entry-title"><?= $getPost['post_title']; ?></h1>
                                 </header> 
                                 <div class="entry-content"> 
-                                    <!--  Images du post  -->
-                                    <p><img alt="" src="./App/public/assets/images/mac.jpg"></p>
             
                                     <!--  Date du post et utilisateur -->
                                     <blockquote>
@@ -53,7 +48,7 @@ session_start();
                                     </blockquote>
 
                                     <!--  Titre du post  -->
-                                    <h4><?= $getPost['post_title']; ?></h4>
+                                    <!--<h4><?= $getPost['post_title']; ?></h4>-->
 
                                     <!--  Contenu du post  -->
                                     <p>
@@ -113,13 +108,15 @@ session_start();
                              -->
 
 
-                            <pre>
-                                <?php
-                                echo '$_REQUEST';
-                                echo '</br>';
-                                var_dump($_REQUEST);
-                                ?>
-                            </pre>
+                            <!--
+                                <pre>
+                                    <?php
+                                    echo '$_REQUEST';
+                                    echo '</br>';
+                                    var_dump($_REQUEST);
+                                    ?>
+                                </pre>
+                            -->
                             
 
                             <!-- ************************ Formulaire pour poster un commentaire ******************** -->

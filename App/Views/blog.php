@@ -80,6 +80,15 @@
                                         <input type="submit" value="Affichage de mon post" name="submit" class="btn btn-action">
                                         <input type="hidden" name="post_id" value="<?=urlencode($post['post_id']) ?>">
                                     </form>
+
+                                    <?php
+                                    // Partie is_admin, activer les boutons si l'utilisateur connecté est un admin
+                                    if ($getUser['is_admin'] === '1') { ?>
+                                        <form class="box" action="?page=edit" method="post" name="postedit">
+                                            <input type="submit" value="Modifier" name="submit" class="btn btn-action">
+                                            <input type="hidden" name="post_id" value="<?=urlencode($post['post_id']) ?>">
+                                        </form>
+                                    <?php } ?>
                                 </div>
                             </article>
 
