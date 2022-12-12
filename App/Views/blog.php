@@ -59,7 +59,6 @@
 
 
                         <div class="row">
-
                             <!-- Affichage de mes posts -->
                             <?php
                             foreach ($getPosts as $post) {
