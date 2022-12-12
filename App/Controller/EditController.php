@@ -42,14 +42,6 @@ class EditController extends Controller {
     public function postEdit() {
         $post_id = $_POST['post_id'];
 
-        echo 'voici mon post id';
-        echo '</br>';
-        echo '</br>';
-        var_dump($_POST['post_id']);
-        echo '</br>';
-        echo '</br>';
-
-
         $this->_editPost = new ModelEdit;
         $this->_editPost->editPost($post_id);
     }

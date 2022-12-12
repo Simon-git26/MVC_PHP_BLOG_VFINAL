@@ -103,12 +103,6 @@ class Model {
     public function editPost($post_id) {
         $this->connectDatabase();
 
-        echo 'voici mon dump';
-        echo '</br>';
-        var_dump($_REQUEST);
-        echo '</br>';
-        echo '</br>';
-
         if (isset($_REQUEST['title_post_edit'], $_REQUEST['content_post_edit'], $_REQUEST['users'])){
             $title_post_edit = stripslashes($_REQUEST['title_post_edit']);
             $content_post_edit = stripslashes($_REQUEST['content_post_edit']);
@@ -228,18 +222,19 @@ class Model {
     public function registerUser() {
         $this->connectDatabase();
 
-        if (isset($_REQUEST['username'], $_REQUEST['firstname'], $_REQUEST['email'], $_REQUEST['password'])){
+        if (isset($_REQUEST['username'], $_REQUEST['firstname'], $_REQUEST['email'], $_REQUEST['slogan'], $_REQUEST['password'])){
             // récupérer le nom d'utilisateur et supprimer les antislashes
             $username = stripslashes($_REQUEST['username']);
             $firstname = stripslashes($_REQUEST['firstname']);
             // récupérer l'email et supprimer les antislashes
             $email = stripslashes($_REQUEST['email']);
+            $slogan = stripslashes($_REQUEST['slogan']);
             // récupérer le mot de passe et supprimer les antislashes
             $password = stripslashes($_REQUEST['password']);
 
             //requéte SQL + mot de passe crypté
             $query = self::$_database->query(
-                "INSERT into `users` (username, firstname, email, password) VALUES ('$username', '$firstname', '$email', '".hash('sha256', $password)."')"
+                "INSERT into `users` (username, firstname, email, slogan, password) VALUES ('$username', '$firstname', '$email', '$slogan', '".hash('sha256', $password)."')"
             );
 
            
