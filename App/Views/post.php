@@ -26,24 +26,6 @@ session_start();
 
     <body class="home">
         
-            <pre>
-                <?php
-                
-                echo "**************************************DEBUG de ma SESSION persistante **************************";
-                echo '</br>';
-                var_dump($_POST);
-                echo '</br>';
-                var_dump($_GET);
-                echo '</br>';
-                
-                ?>
-            </pre>
-        
-
-
-        
-        
-       
         <main id="main">
             <div class="container">
                 <div class="row topspace">
@@ -67,7 +49,7 @@ session_start();
             
                                     <!--  Date du post et utilisateur -->
                                     <blockquote>
-                                        <p>Crée le : <?= $getPost['post_date_create']; ?> Par : <?= $getPost['username']; ?></p>
+                                        <p>Crée le : <?= $getPost['post_date_create']; ?> Par : <?= $getPost['username']; ?> <?= $getPost['firstname']; ?></p>
                                     </blockquote>
 
                                     <!--  Titre du post  -->

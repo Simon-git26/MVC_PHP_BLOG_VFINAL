@@ -26,13 +26,14 @@ class Model {
         // Si home requetes avec limit sinon (blog) tous les posts
         if ($_GET['page'] === 'home') {
             $request = self::$_database->query(
-                "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create, users.username FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY post_date_create ASC LIMIT 0, 4"
+                "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create, users.username, users.firstname FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY post_date_create ASC LIMIT 0, 4"
             );
         } else {
             $request = self::$_database->query(
-                "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create, users.username FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY post_date_create ASC"
+                "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create, users.username, users.firstname FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY post_date_create ASC"
             );
 
+            /*
             ?>
                 <pre>
                     <?php
@@ -46,10 +47,12 @@ class Model {
                     ?>
                 </pre>
             <?php
+            */
         }
         
         $posts = $request->fetchAll();
 
+        /*
         ?>
             <pre>
                 <?php
@@ -60,6 +63,7 @@ class Model {
                 ?>
             </pre>
         <?php
+        */
 
         return $posts;
     }
@@ -85,7 +89,7 @@ class Model {
         <?php
         */
         $request = self::$_database->query(
-            "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create, users.username FROM posts INNER JOIN users ON posts.user_id = users.id WHERE post_id = '".$getPostId."'"
+            "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create, users.username, users.firstname FROM posts INNER JOIN users ON posts.user_id = users.id WHERE post_id = '".$getPostId."'"
         );
 
         $post = $request->fetchAll();
@@ -170,9 +174,10 @@ class Model {
     public function registerUser() {
         $this->connectDatabase();
 
-        if (isset($_REQUEST['username'], $_REQUEST['email'], $_REQUEST['password'])){
+        if (isset($_REQUEST['username'], $_REQUEST['firstname'], $_REQUEST['email'], $_REQUEST['password'])){
             // récupérer le nom d'utilisateur et supprimer les antislashes
             $username = stripslashes($_REQUEST['username']);
+            $firstname = stripslashes($_REQUEST['firstname']);
             // récupérer l'email et supprimer les antislashes
             $email = stripslashes($_REQUEST['email']);
             // récupérer le mot de passe et supprimer les antislashes
@@ -180,7 +185,7 @@ class Model {
 
             //requéte SQL + mot de passe crypté
             $query = self::$_database->query(
-                "INSERT into `users` (username, email, password) VALUES ('$username', '$email', '".hash('sha256', $password)."')"
+                "INSERT into `users` (username, firstname, email, password) VALUES ('$username', '$firstname', '$email', '".hash('sha256', $password)."')"
             );
 
            

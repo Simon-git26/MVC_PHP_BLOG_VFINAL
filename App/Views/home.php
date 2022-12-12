@@ -27,7 +27,7 @@
 
                         <?php if (!is_null($getUser) || isset($getUser)) {
                         ?>
-                            <p class="lead text-center text-muted">Bonjour <strong><?= $getUser['username'];?></strong>. Ceci est la page d'accueil, si vous souhaitez vous deconnecter, cliquer ici: <a href="App/Views/logout.php">Déconnexion</a></br> 
+                            <p class="lead text-center text-muted">Bonjour <strong><?= $getUser['username'];?> <?= $getUser['firstname'];?></strong>. Ceci est la page d'accueil, si vous souhaitez vous deconnecter, cliquer ici: <a href="App/Views/logout.php">Déconnexion</a></br> 
                             Si vous souhaitez acceder a votre tableau de borde cliquer ici: <a href="sidebar-right.html">Tableau de bord</a>. </p>
                         <?php
                         }
@@ -51,7 +51,7 @@
                             <div class="col-sm-6 col-md-3" style="display: flex;flex-direction: column;align-items: center;margin-bottom: 45px;">
                                 <!--  Infos de mon post  -->
                                 <h3 class="text-center"><?= $post['post_title']; ?></h3>
-                                <h4 class="text-center">Crée par <?= $post['username']; ?></h4>
+                                <h4 class="text-center">Crée par <?= $post['username']; ?> <?= $post['firstname']; ?></h4>
                                 <p><?= $post['post_content']; ?></p>
                                 <p><?= $post['post_date_create']; ?></p>
 

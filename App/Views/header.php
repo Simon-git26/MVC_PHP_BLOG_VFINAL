@@ -7,7 +7,7 @@
 			if (!is_null($getUser) || isset($getUser)) {
 			?>
 				<img class="img-circle" src="App/public/assets/images/guy.jpg" alt="">
-				<span class="title"><?= $getUser['username'];?></span>
+				<span class="title"><?= $getUser['username'];?> <?= $getUser['firstname'];?></span>
 				<span class="tagline">Developpeur Web<br>
 					<a href=""><?= $getUser['email'];?></a>
 				</span>

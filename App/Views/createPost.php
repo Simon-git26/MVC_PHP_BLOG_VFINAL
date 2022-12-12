@@ -20,19 +20,7 @@
 
 
     <body class="create">
-            <pre>
-                <?php
-                
-                echo "**************************************DEBUG de ma SESSION persistante **************************";
-                echo '</br>';
-                var_dump($_POST);
-                echo '</br>';
-                var_dump($_SESSION);
-                echo '</br>';
-                
-                ?>
-            </pre>
-
+            
         <main>
             <div class="container">
                 <div class=" text-center mt-5 ">
@@ -64,15 +52,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="form_email">Username *</label>
-                                                        <input id="form_username" type="text" name="username_post" class="form-control" placeholder="Entrez votre username" required="required" data-error="username non valide">
-                                                        <input type="hidden" name="userame" value="<?=urlencode($_SESSION['user_id']) ?>">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                             
 
                                             <div class="row">
