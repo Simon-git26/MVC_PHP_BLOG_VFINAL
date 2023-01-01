@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Affichage All de mes erreurs
+// Affichage de mes erreurs
 ini_set('display_error', 'On');
 error_reporting(E_ALL);
 
