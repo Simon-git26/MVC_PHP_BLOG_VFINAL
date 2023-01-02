@@ -73,7 +73,7 @@
                                                 </div>
 
                                                 <div class="col-md-12">
-                                                    <input type="submit" name="submit" class="btn btn-success btn-send pt-2 btn-block" value="Modifier" >
+                                                    <input type="submit" name="submit" class="btn btn-primary pt-2 btn-block" value="Modifier" >
                                                     <input type="hidden" name="post_id" value="<?=urlencode($getPost['post_id']) ?>">
                                                 </div>
                                             </div>

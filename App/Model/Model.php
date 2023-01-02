@@ -115,7 +115,7 @@ class Model {
                     echo '</br>';
                     echo 'var_dump du edit post';
                     echo '</br>';
-                    var_dump("UPDATE `posts` SET post_title='".$title_post_edit."', post_content='".$content_post_edit."', user_id=$user_id WHERE post_id=$post_id");
+                    var_dump("UPDATE `posts` SET post_title='".$title_post_edit."', post_content='".$content_post_edit."', user_id=$user_id, post_date_create= CURRENT_TIMESTAMP WHERE post_id=$post_id");
                     echo '</br>';
                     echo '</br>';
                     echo '</br>';
@@ -125,7 +125,7 @@ class Model {
             <?php
             //requéte SQL + mot de passe crypté
             $query = self::$_database->query(
-                "UPDATE `posts` SET post_title='".$title_post_edit."', post_content='".$content_post_edit."', user_id=$user_id WHERE post_id=$post_id"
+                "UPDATE `posts` SET post_title='".$title_post_edit."', post_content='".$content_post_edit."', user_id=$user_id, post_date_create= CURRENT_TIMESTAMP WHERE post_id=$post_id"
             );
         }
     }
