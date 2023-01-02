@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+        
+        <title>MVC-PHP</title>
+        <link rel="shortcut icon" href="App/public/assets/images/gt_favicon.png">
+        
+        <!-- Bootstrap -->
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+        <!-- Icons -->
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+        <!-- Custom styles -->
+        <link rel="stylesheet" href="App/public/assets/css/styles.css">
+    </head>
+    <body>
+
+        <main>
+            <div class="container">
+                <div class=" text-center mt-5 ">
+                    <h2 class="section-title"><span>Contactez Moi</span></h2>
+                    <p class="text-center w-responsive mx-auto mb-5">Vous avez une question et vous souhaitez prendre contact ? Remplissez ce formulaire et envoyer vôtre requête !</p>
+                </div>
+
+                <div class="row" style="display: flex;justify-content: center;">
+                    <div class="col-lg-7 mx-auto">
+                        <div class="card mt-2 mx-auto p-4 bg-light">
+                            <div class="card-body bg-light">
+                    
+                                <div class="container">
+
+                                    <form action="" method="post" name="create" id="post_create">
+                                        <div class="controls">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="form_title">Votre Nom *</label>
+                                                        <input id="form_title" type="text" name="title_post" class="form-control" placeholder="Titre du Post" required="required" data-error="Le titre est requis.">
+                                                    
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="email" class="">Votre Email *</label>
+                                                        <input type="text" id="email" name="email" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                         
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="form_message">Contenu du post *</label>
+                                                        <textarea id="form_message" name="content_post" class="form-control" placeholder="Ecrivez votre post" rows="4" required="required" data-error="Please, leave us a message."></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <input type="submit" name="submit" class="btn btn-primary pt-2" value="Envoyer" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+        <?php
+        //Inclure mon footer
+        require_once('footer.php');
+        ?>
+
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="App/public/assets/js/template.js"></script>
+    </body>
+</html>
