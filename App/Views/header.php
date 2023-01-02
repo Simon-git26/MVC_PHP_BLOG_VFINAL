@@ -6,10 +6,10 @@
 			<?php
 			if (!is_null($getUser) || isset($getUser)) {
 			?>
-				<img class="img-circle" src="App/public/assets/images/guy.jpg" alt="">
-				<span class="title"><?= $getUser['username'];?> <?= $getUser['firstname'];?></span>
+				<img class="img-circle" src="App/public/assets/images/s1.jpg" alt="">
+				<span class="title" style="color:#bd1550;"><?= $getUser['username'];?> <?= $getUser['firstname'];?></span>
 				
-				<span class="tagline"><?= $getUser['slogan'];?></br>
+				<span class="tagline" style="color:black;"><?= $getUser['slogan'];?></br>
 					<p>Pour consultez mon CV:<a href="./App/public/doc/CV_SIMON_BALLEUX-PRUVOST-compressé.pdf" target="_blank" style="color:#bd1550;"> Cliquez Ici</a></p>
 				</span>
 				<p style="font-size: 2rem;">Pour me suivre: 
@@ -34,11 +34,19 @@
 			<div class="navbar-collapse collapse">
 				
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="?page=home">Accueil</a></li>
-					<li><a href="?page=home">A Propos</a></li>
-					<li><a href="?page=blog">Blog</a></li>
-					<li><a href="?page=create">Ajouter Post</a></li>
+					<li class="active"><a href="?page=home" style="color:rgba(189, 21, 80, 0.9);font-weight:bold;">Accueil</a></li>
+					<li><a href="?page=contact" style="color:rgba(189, 21, 80, 0.9);font-weight:bold;">Contact</a></li>
+					<li><a href="?page=blog" style="color:rgba(189, 21, 80, 0.9);font-weight:bold;">Blog</a></li>
+					<li><a href="?page=create" style="color:rgba(189, 21, 80, 0.9);font-weight:bold;">Ajouter Post</a></li>
 
+					<!-- Si user est admin -->
+					<?php
+					if ($getUser['is_admin'] == 1) {
+					?>
+					<li><a href="?page=admin" style="color:rgba(189, 21, 80, 0.9);font-weight:bold;">Administration</a></li>
+					<?php
+					}
+					?>
 				</ul>
 			
 			</div>		
