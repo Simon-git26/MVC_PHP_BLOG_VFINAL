@@ -162,6 +162,21 @@ class Model {
         }
     }
 
+
+    // Supprimer un Post
+    public function deletePost($post_id) {
+        $this->connectDatabase();
+
+        if (isset($_POST['submit_supp'])){
+
+            $query = self::$_database->query(
+                "DELETE FROM `posts` WHERE post_id=$post_id"
+            );
+
+            header("Location: ?page=home");
+        }
+    }
+
     //
     // ****************************************  User  ****************************************
     //
