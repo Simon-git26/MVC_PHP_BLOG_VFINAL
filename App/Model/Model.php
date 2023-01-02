@@ -86,18 +86,6 @@ class Model {
             $user_id = stripslashes($_REQUEST['users']);
             ?>
 
-            <pre>
-                <?php
-                    echo '</br>';
-                    echo 'var_dump du edit post';
-                    echo '</br>';
-                    var_dump("UPDATE `posts` SET post_title='".$title_post_edit."', post_content='".$content_post_edit."', user_id=$user_id, post_date_create= CURRENT_TIMESTAMP WHERE post_id=$post_id");
-                    echo '</br>';
-                    echo '</br>';
-                    echo '</br>';
-                ?>
-            </pre>
-
             <?php
             //requéte SQL + mot de passe crypté
             $query = self::$_database->query(
@@ -277,17 +265,6 @@ class Model {
             // récupérer le contenu du commentaire et supprimer les antislashes
             $comment_content = stripslashes($_REQUEST['comment_content']);
             ?>
-
-            <pre>
-                <?php
-                    echo '</br>';
-                    echo 'var_dump du POST COMMENT';
-                    echo '</br>';
-                    var_dump("INSERT into `comments` (post_id, comment_user, comment_content, is_actif) VALUES ($postComment, '$comment_user', '$comment_content', 0)");
-                    echo '</br>';
-                    echo '</br>';
-                ?>
-            </pre>
 
             <?php
             //requéte SQL + mot de passe crypté

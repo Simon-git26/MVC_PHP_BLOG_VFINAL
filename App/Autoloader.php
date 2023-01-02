@@ -22,7 +22,6 @@ class Autoloader {
             $class = str_replace(__NAMESPACE__ . '\\', '', $class);
             // Remplacer mes \\ dans le nom de ma class en /
             $class = str_replace('\\', '/', $class);
-            // var_dump(__DIR__ . '/' . $class . '.php');
             require __DIR__ . '/' . $class . '.php';
         }
     }

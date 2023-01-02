@@ -23,22 +23,6 @@
             require_once('header.php');
         ?>
 
-        <?php
-        /*
-            ?>
-                <pre>
-                    <?php
-                        var_dump($_POST);
-                        echo '</br>';
-                        echo '</br>';
-                        echo '</br>';
-                        var_dump($_REQUEST);
-                    ?>
-                </pre>
-            <?php
-        */
-        ?>
-
         <main id="main">
             <div class="container">
 

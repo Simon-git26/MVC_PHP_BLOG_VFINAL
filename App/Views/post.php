@@ -97,27 +97,6 @@ session_start();
                             
                             <div class="clearfix"></div>
 
-                            <!--
-                            <nav id="comment-nav-below" class="comment-navigation clearfix" role="navigation">
-                                <div class="nav-content">
-                                    <div class="nav-previous">&larr; Older Comments</div>
-                                    <div class="nav-next">Newer Comments &rarr;</div>
-                                </div>
-                            </nav>
-                             -->
-
-
-                            <!--
-                                <pre>
-                                    <?php
-                                    echo '$_REQUEST';
-                                    echo '</br>';
-                                    var_dump($_REQUEST);
-                                    ?>
-                                </pre>
-                            -->
-                            
-
                             <!-- ************************ Formulaire pour poster un commentaire ******************** -->
                             <div id="respond">
                                 <h3 id="reply-title">Poster un commentaire</h3>
