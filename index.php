@@ -35,6 +35,9 @@ switch (isset($_GET['page']) && $_GET['page']) {
     case 'blog'         : $page = $_GET['page'];
     case 'create'       : $page = $_GET['page'];
     case 'edit'         : $page = $_GET['page'];
+    case 'contact'      : $page = $_GET['page'];
+    case 'delete'       : $page = $_GET['page'];
+    case 'admin'        : $page = $_GET['page'];
 }
 
 

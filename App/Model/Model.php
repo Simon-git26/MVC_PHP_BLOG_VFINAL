@@ -282,24 +282,59 @@ class Model {
     // Récupérer tous mes comments
     public function getComments($getComments) {
         $this->connectDatabase();
-        /*
-        ?>
-        
-        <pre>
-            <?php
-            echo '******************** Requete Comments par id du post ******************';
-            echo '</br>';
-            var_dump("SELECT comment_id, comment_user, comment_content, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%imin%ss') AS comment_date FROM comments WHERE post_id = $getComments ORDER BY comment_date ASC LIMIT 0, 5");
-            ?>
-        </pre>
-
-        <?php
-        */
+       
         $request = self::$_database->query(
-            "SELECT comment_id, comment_user, comment_content, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%imin%ss') AS comment_date FROM comments WHERE post_id = $getComments ORDER BY comment_date ASC LIMIT 0, 5"
+            "SELECT comment_id, comment_user, comment_content, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%imin%ss') AS comment_date FROM comments WHERE post_id = $getComments AND is_actif = 1 ORDER BY comment_date ASC LIMIT 0, 5"
         );
         $comments = $request->fetchAll();
         return $comments;
+    }
+
+
+    // Récupérer tous mes comments en attente de validation
+    public function getCommentsWaitForValidation() {
+        $this->connectDatabase();
+       
+        $request = self::$_database->query(
+            "SELECT comment_id, comment_user, comment_content, DATE_FORMAT(comment_date, '%d/%m/%Y à %Hh%imin%ss') AS comment_date FROM comments WHERE is_actif = 0 ORDER BY comment_date ASC LIMIT 0, 5"
+        );
+        $comments = $request->fetchAll();
+        return $comments;
+    }
+
+
+    // Function pour Valider un commentaire
+    public function validComment($comment_id) {
+        $this->connectDatabase();
+
+        if (isset($_POST['user_comment'], $_POST['content_comment'])){
+            $submit_user = stripslashes($_POST['user_comment']);
+            $submit_content = stripslashes($_POST['content_comment']);
+
+            $request = self::$_database->query(
+                "UPDATE `comments` SET comment_user='".$submit_user."', comment_content='".$submit_content."', is_actif = 1, post_id = 2 WHERE comment_id = $comment_id"
+            
+            );
+
+            header("Location: ?page=admin");
+        }
+    }
+
+
+
+    // Function pour Rejeter un commentaire
+    public function dismissComment($comment_id) {
+        $this->connectDatabase();
+
+        if (isset($_POST['submit_dismiss'])){
+
+            $request = self::$_database->query(
+                "DELETE FROM `comments` WHERE comment_id = $comment_id"
+            
+            );
+
+            header("Location: ?page=admin");
+        }
     }
 
 
@@ -320,9 +355,7 @@ class Model {
                     echo '</br>';
                     echo 'var_dump du POST COMMENT';
                     echo '</br>';
-                    var_dump("INSERT into `comments` (post_id, comment_user, comment_content) VALUES ($postComment, '$comment_user', '$comment_content')");
-                    echo '</br>';
-                    echo '</br>';
+                    var_dump("INSERT into `comments` (post_id, comment_user, comment_content, is_actif) VALUES ($postComment, '$comment_user', '$comment_content', 0)");
                     echo '</br>';
                     echo '</br>';
                 ?>
@@ -331,7 +364,7 @@ class Model {
             <?php
             //requéte SQL + mot de passe crypté
             $query = self::$_database->query(
-                "INSERT into `comments` (post_id, comment_user, comment_content) VALUES ($postComment, '$comment_user', '$comment_content')"
+                "INSERT into `comments` (post_id, comment_user, comment_content, is_actif) VALUES ($postComment, '$comment_user', '$comment_content', 0)"
             );
 
 
