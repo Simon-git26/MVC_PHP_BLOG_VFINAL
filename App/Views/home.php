@@ -27,8 +27,7 @@
 
                         <?php if (!is_null($getUser) || isset($getUser)) {
                         ?>
-                            <p class="lead text-center text-muted">Bonjour <strong><?= $getUser['username'];?> <?= $getUser['firstname'];?></strong>. Ceci est la page d'accueil, si vous souhaitez vous deconnecter, cliquer ici: <a href="App/Views/logout.php">Déconnexion</a></br> 
-                            Si vous souhaitez acceder a votre tableau de borde cliquer ici: <a href="sidebar-right.html">Tableau de bord</a>. </p>
+                            <p class="lead text-center">Bonjour <strong style="color:rgba(189, 21, 80, 0.8);font-weight:bold;"><?= $getUser['username'];?> <?= $getUser['firstname'];?></strong>. Ceci est la page d'accueil, si vous souhaitez vous deconnecter, cliquer ici: <a href="App/Views/logout.php" style="color:rgba(189, 21, 80, 0.8);font-weight:bold;">D&eacute;connexion</a></br></p> 
                         <?php
                         }
                         ?>
@@ -40,7 +39,7 @@
                 
                 
                 <div class="row section featured topspace">
-                    <h2 class="section-title"><span>Les 4 derniers posts</span></h2>
+                    <h2 class="section-title"><span>Les derniers posts</span></h2>
 
                     <div class="row">
                     
@@ -63,12 +62,21 @@
 
 
                                 <?php
-                                // Partie is_admin, activer les boutons si l'utilisateur connecté est un admin
+                                // Partie is_admin, Modifier et Supprimer
                                 if ($getUser['is_admin'] === '1') { ?>
-                                    <form class="box" action="?page=edit" method="post" name="postedit">
-                                        <input type="submit" value="Modifier" name="submit" class="btn btn-action">
-                                        <input type="hidden" name="post_id" value="<?=urlencode($post['post_id']) ?>">
-                                    </form>
+                                    <div class="row">
+                                        <div style="display:flex;justify-content:center;">
+                                            <form class="box" action="?page=edit" method="post" name="postedit">
+                                                <input type="submit" value="Modifier" name="submit" class="btn btn-action">
+                                                <input type="hidden" name="post_id" value="<?=urlencode($post['post_id']) ?>">
+                                            </form>
+
+                                            <form class="box" action="?page=delete" method="post" name="postdelete">
+                                                <input type="submit" value="Supprimer" name="submit" class="btn btn-action">
+                                                <input type="hidden" name="post_id" value="<?=urlencode($post['post_id']) ?>">
+                                            </form>
+                                        </div>
+                                    </div>
                                 <?php } ?>
                             </div>
                         <?php

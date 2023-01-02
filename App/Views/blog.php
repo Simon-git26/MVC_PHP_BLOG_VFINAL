@@ -50,10 +50,10 @@
                                 <div class="entry-meta"> 
                                     <span class="posted-on"><time class="entry-date published" date="2013-09-27">September 27, 2013</time></span>			
                                 </div>
-                                <h1 class="entry-title">Bienvenu sur le Blog !</h1>
+                                <h2 class="section-title"><span>Bienvenu sur le Blog !</span></h2>
                             </header>
                             <div class="entry-content">
-                                <p>rehenderit placeat quam debitis quas magni eveniet.inctio, quia, providem inventore itaque atque sint nihil eveniet consequuntur eius! Laborum, at sit animi quae quidem ex tempora facilis.</p>
+                                <p>Cette page de Blog réunis tous les posts qui ont étaient posté sur le site, d'ici on peut consulter rapidement tous les posts et on peut cliquer sur le bouton d'affichage pour avoir plus de visibilitée</p>
                             </div>
                         </article>
 
@@ -69,7 +69,7 @@
                                     <div class="entry-meta"> 
                                         <span class="posted-on"><time class="entry-date published" date="2013-09-27"><?= $post['post_date_create']; ?></time></span>			
                                     </div>
-                                    <h3 class="text-center"><?= $post['post_title']; ?></h3>
+                                    <h3 class="section-title text-center"><?= $post['post_title']; ?></h3>
                                 </header>
                                 <div class="entry-content">
                                     <h4 class="text-center">Crée par <?= $post['username']; ?> <?= $post['firstname']; ?></h4>
@@ -82,13 +82,23 @@
                                     </form>
 
                                     <?php
-                                    // Partie is_admin, activer les boutons si l'utilisateur connecté est un admin
+                                    // Partie is_admin, Modifier et Supprimer
                                     if ($getUser['is_admin'] === '1') { ?>
-                                        <form class="box" action="?page=edit" method="post" name="postedit">
-                                            <input type="submit" value="Modifier" name="submit" class="btn btn-action">
-                                            <input type="hidden" name="post_id" value="<?=urlencode($post['post_id']) ?>">
-                                        </form>
+                                        <div class="row">
+                                            <div style="display:flex;justify-content:center;">
+                                                <form class="box" action="?page=edit" method="post" name="postedit">
+                                                    <input type="submit" value="Modifier" name="submit" class="btn btn-action">
+                                                    <input type="hidden" name="post_id" value="<?=urlencode($post['post_id']) ?>">
+                                                </form>
+
+                                                <form class="box" action="?page=delete" method="post" name="postdelete">
+                                                    <input type="submit" value="Supprimer" name="submit" class="btn btn-action">
+                                                    <input type="hidden" name="post_id" value="<?=urlencode($post['post_id']) ?>">
+                                                </form>
+                                            </div>
+                                        </div>
                                     <?php } ?>
+
                                 </div>
                             </article>
 

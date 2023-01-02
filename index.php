@@ -2,7 +2,8 @@
 session_start();
 
 
-// Affichage de mes erreurs
+
+// Affichage All de mes erreurs
 ini_set('display_error', 'On');
 error_reporting(E_ALL);
 

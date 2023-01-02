@@ -24,7 +24,7 @@
         <main>
             <div class="container">
                 <div class=" text-center mt-5 ">
-                    <h1 >Ajouter un Post !</h1>
+                    <h2 class="section-title"><span>Ajouter un Post</span></h2>
                 </div>
 
                 <div class="row" style="display: flex;justify-content: center;">
@@ -44,12 +44,6 @@
                                                     
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="form_email">Email *</label>
-                                                        <input id="form_email" type="email" name="email_post" class="form-control" placeholder="Entrez votre email" required="required" data-error="Email non valide">
-                                                    </div>
-                                                </div>
                                             </div>
 
                                             
@@ -64,7 +58,7 @@
                                                 </div>
 
                                                 <div class="col-md-12">
-                                                    <input type="submit" name="submit" class="btn btn-success btn-send pt-2 btn-block" value="Envoyer" >
+                                                    <input type="submit" name="submit" class="btn btn-primary pt-2 btn-block" value="Envoyer" >
                                                 </div>
                                             </div>
                                         </div>

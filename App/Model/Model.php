@@ -32,39 +32,9 @@ class Model {
             $request = self::$_database->query(
                 "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create, users.username, users.firstname FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY post_date_create ASC"
             );
-
-            /*
-            ?>
-                <pre>
-                    <?php
-                        echo "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create, users.username FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY post_date_create ASC";
-                        echo '</br>';
-                        echo '</br>';
-                        echo '</br>';
-                        var_dump($request);
-                        echo '</br>';
-                        echo '</br>';
-                    ?>
-                </pre>
-            <?php
-            */
         }
         
         $posts = $request->fetchAll();
-
-        /*
-        ?>
-            <pre>
-                <?php
-                    echo '</br>';
-                    var_dump($posts);
-                    echo '</br>';
-                    echo '</br>';
-                ?>
-            </pre>
-        <?php
-        */
-
         return $posts;
     }
 
@@ -74,20 +44,7 @@ class Model {
     public function getPostId($getPostId) {
        
         $this->connectDatabase();
-        /*
-        ?>
-        
-        <pre>
-            <?php
-            echo '******************** Requete getPostId pour id du post ******************';
-            echo '</br>';
-            var_dump("SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create FROM posts WHERE post_id = '".$getPostId."'");
-            echo '</br>';
-            ?>
-        </pre>
-
-        <?php
-        */
+     
         $request = self::$_database->query(
             "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create, users.username, users.firstname FROM posts INNER JOIN users ON posts.user_id = users.id WHERE post_id = '".$getPostId."'"
         );
@@ -97,6 +54,25 @@ class Model {
     }
 
 
+    // Création d'un Post
+    public function createPost() {
+        $this->connectDatabase();
+
+        if (isset($_REQUEST['title_post'], $_REQUEST['content_post'])){
+            $title_post = stripslashes($_REQUEST['title_post']);
+            $content_post = stripslashes($_REQUEST['content_post']);
+            $user_id = $_SESSION['user_id'];
+            ?>
+
+            <?php
+            //requéte SQL + mot de passe crypté
+            $query = self::$_database->query(
+                "INSERT into `posts` (post_title, post_content, user_id) VALUES ('$title_post', '$content_post', $user_id)"
+            );
+
+            header("Location: ?page=blog");
+        }
+    }
 
 
     // Modifier un Post
@@ -132,37 +108,6 @@ class Model {
 
 
 
-    // Création d'un Post
-    public function createPost() {
-        $this->connectDatabase();
-
-        if (isset($_REQUEST['title_post'], $_REQUEST['content_post'])){
-            $title_post = stripslashes($_REQUEST['title_post']);
-            $content_post = stripslashes($_REQUEST['content_post']);
-            $user_id = $_SESSION['user_id'];
-            ?>
-
-            <pre>
-                <?php
-                    echo '</br>';
-                    echo 'var_dump du create post';
-                    echo '</br>';
-                    var_dump("INSERT into `posts` (post_title, post_content, user_id) VALUES ('$title_post', '$content_post', $user_id)");
-                    echo '</br>';
-                    echo '</br>';
-                    echo '</br>';
-                ?>
-            </pre>
-
-            <?php
-            //requéte SQL + mot de passe crypté
-            $query = self::$_database->query(
-                "INSERT into `posts` (post_title, post_content, user_id) VALUES ('$title_post', '$content_post', $user_id)"
-            );
-        }
-    }
-
-
     // Supprimer un Post
     public function deletePost($post_id) {
         $this->connectDatabase();
@@ -176,6 +121,7 @@ class Model {
             header("Location: ?page=home");
         }
     }
+
 
     //
     // ****************************************  User  ****************************************
@@ -251,27 +197,9 @@ class Model {
             $query = self::$_database->query(
                 "INSERT into `users` (username, firstname, email, slogan, password) VALUES ('$username', '$firstname', '$email', '$slogan', '".hash('sha256', $password)."')"
             );
-
-           
-            ?>
-        
-            <pre>
-                <?php
-                echo "****************DEBUG*****************";
-                echo '</br>';
-                echo 'affichage request';
-                echo '</br>';
-                var_dump($_REQUEST);
-                echo '</br>';
-                ?>
-            </pre>
-
-            <?php
         }
     }
    
-
-
 
 
 

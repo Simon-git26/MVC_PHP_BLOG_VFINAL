@@ -68,8 +68,7 @@ session_start();
 
                         <!-- ********************** COMMENTAIRES *************** -->
                         <div id="comments">	
-                            <h3 class="comments-title">3 Commentaires</h3>
-                            <a href="#comment-form" class="leave-comment">Ecrivez un commentaire</a>
+                            <h2 class="section-title">Commentaires</h2>
 
                             <ol class="comments-list">
                                 <?php
@@ -77,7 +76,7 @@ session_start();
                                 ?>
                                     <li class="comment">
                                         <div>
-                                            <img src="./App/public/assets/images/avatar_woman.png" alt="Avatar" class="avatar">
+                                            <img src="./App/public/assets/images/mac.jpg" alt="Avatar" class="avatar">
                                             
                                             <div class="comment-meta">
                                                 <!--  comment user et comment date  -->
