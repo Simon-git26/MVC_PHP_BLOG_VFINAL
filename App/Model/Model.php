@@ -17,7 +17,7 @@ class Model {
 
     //
     // *************************************  POSTS  ************************************
-    // 
+    //
     // Récuperer tous mes posts
     public function getPosts() {
 
@@ -33,7 +33,7 @@ class Model {
                 "SELECT post_id, post_title, post_content, DATE_FORMAT(post_date_create, '%d/%m/%Y à %Hh%imin%ss') AS post_date_create, users.username, users.firstname FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY post_date_create ASC"
             );
         }
-        
+       
         $posts = $request->fetchAll();
         return $posts;
     }
@@ -59,8 +59,8 @@ class Model {
         $this->connectDatabase();
 
         if (isset($_REQUEST['title_post'], $_REQUEST['content_post'])){
-            $title_post = stripslashes($_REQUEST['title_post']);
-            $content_post = stripslashes($_REQUEST['content_post']);
+            $title_post = htmlspecialchars(stripslashes($_REQUEST['title_post']));
+            $content_post = htmlspecialchars(stripslashes($_REQUEST['content_post']));
             $user_id = $_SESSION['user_id'];
             ?>
 
@@ -80,8 +80,8 @@ class Model {
         $this->connectDatabase();
 
         if (isset($_REQUEST['title_post_edit'], $_REQUEST['content_post_edit'], $_REQUEST['users'])){
-            $title_post_edit = stripslashes($_REQUEST['title_post_edit']);
-            $content_post_edit = stripslashes($_REQUEST['content_post_edit']);
+            $title_post_edit = htmlspecialchars(stripslashes($_REQUEST['title_post_edit']));
+            $content_post_edit = htmlspecialchars(stripslashes($_REQUEST['content_post_edit']));
 
             $user_id = stripslashes($_REQUEST['users']);
             ?>
@@ -91,6 +91,8 @@ class Model {
             $query = self::$_database->query(
                 "UPDATE `posts` SET post_title='".$title_post_edit."', post_content='".$content_post_edit."', user_id=$user_id, post_date_create= CURRENT_TIMESTAMP WHERE post_id=$post_id"
             );
+
+            header("Location: ?page=blog");
         }
     }
 
@@ -173,11 +175,11 @@ class Model {
 
         if (isset($_REQUEST['username'], $_REQUEST['firstname'], $_REQUEST['email'], $_REQUEST['slogan'], $_REQUEST['password'])){
             // récupérer le nom d'utilisateur et supprimer les antislashes
-            $username = stripslashes($_REQUEST['username']);
-            $firstname = stripslashes($_REQUEST['firstname']);
+            $username = htmlspecialchars(stripslashes($_REQUEST['username']));
+            $firstname = htmlspecialchars(stripslashes($_REQUEST['firstname']));
             // récupérer l'email et supprimer les antislashes
-            $email = stripslashes($_REQUEST['email']);
-            $slogan = stripslashes($_REQUEST['slogan']);
+            $email = htmlspecialchars(stripslashes($_REQUEST['email']));
+            $slogan = htmlspecialchars(stripslashes($_REQUEST['slogan']));
             // récupérer le mot de passe et supprimer les antislashes
             $password = stripslashes($_REQUEST['password']);
 
@@ -229,7 +231,7 @@ class Model {
 
             $request = self::$_database->query(
                 "UPDATE `comments` SET comment_user='".$submit_user."', comment_content='".$submit_content."', is_actif = 1, post_id = 2 WHERE comment_id = $comment_id"
-            
+           
             );
 
             header("Location: ?page=admin");
@@ -246,7 +248,7 @@ class Model {
 
             $request = self::$_database->query(
                 "DELETE FROM `comments` WHERE comment_id = $comment_id"
-            
+           
             );
 
             header("Location: ?page=admin");
@@ -254,16 +256,16 @@ class Model {
     }
 
 
-    
+   
     //Poster un commentaire
     public function postComment($postComment) {
         $this->connectDatabase();
 
         if (isset($_REQUEST['comment_user'], $_REQUEST['comment_content'])){
             // récupérer le nom du user qui commente et supprimer les antislashes
-            $comment_user = stripslashes($_REQUEST['comment_user']);
+            $comment_user = htmlspecialchars(stripslashes($_REQUEST['comment_user']));
             // récupérer le contenu du commentaire et supprimer les antislashes
-            $comment_content = stripslashes($_REQUEST['comment_content']);
+            $comment_content = htmlspecialchars(stripslashes($_REQUEST['comment_content']));
             ?>
 
             <?php

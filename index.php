@@ -1,5 +1,24 @@
 <?php
 session_start();
+ 
+if(!isset($_SESSION['ip']))
+{
+  // On attribue pour cette session l'adresse IP,
+  // si elle n'est pas encore attribuée
+  $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
+}
+ 
+// On vérifie si l'adresse IP a changé
+// « par magie » (= vol de session)
+if($_SESSION['ip']!=$_SERVER['REMOTE_ADDR'])
+{
+  // Si c'est le cas, on redirige vers une page d'erreur
+  header('Location: 403.php?error=wrong_ip');
+ 
+  // On détruit la session par sécurité (facultatif)
+  $_SESSION = array();
+  exit;
+}
 
 
 
