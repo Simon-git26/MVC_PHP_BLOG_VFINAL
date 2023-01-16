@@ -11,8 +11,8 @@ Utilisation de Bootstrap en lien CDN
 ## Installation
 $ git clone https://github.com/Simon-git26/MVC_PHP_BLOG_VFINAL.git
 Utilisation de MAMP, placer le répèrtoire dans le dossier htdocs de MAMP pour installer le projet sur le serveur MAMP
-
 Se rendre ensuite à cette url: http://localhost/MVC_PHP_BLOG_VFINAL/?page=register pour crée un compte 
+Installation de composer pour mailjet donc ce qui permet d'envoyer des mails de contact
 
 
 ## Description du besoin
