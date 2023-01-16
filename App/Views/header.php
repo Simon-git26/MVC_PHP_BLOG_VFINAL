@@ -34,10 +34,24 @@
 			<div class="navbar-collapse collapse">
 				
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="?page=home" style="color:rgba(189, 21, 80, 0.9);font-weight:bold;">Accueil</a></li>
-					<li><a href="?page=contact" style="color:rgba(189, 21, 80, 0.9);font-weight:bold;">Contact</a></li>
+					<?php
+					if ($_SESSION['auth'] != "") {
+						?>
+						<li class="active"><a href="?page=home" style="color:rgba(189, 21, 80, 0.9);font-weight:bold;">Accueil</a></li>
+						<li><a href="?page=contact" style="color:rgba(189, 21, 80, 0.9);font-weight:bold;">Contact</a></li>
+						<?php
+					} 
+					?>
+
 					<li><a href="?page=blog" style="color:rgba(189, 21, 80, 0.9);font-weight:bold;">Blog</a></li>
-					<li><a href="?page=create" style="color:rgba(189, 21, 80, 0.9);font-weight:bold;">Ajouter Post</a></li>
+
+					<?php
+					if ($_SESSION['auth'] != "") {
+						?>
+						<li><a href="?page=create" style="color:rgba(189, 21, 80, 0.9);font-weight:bold;">Ajouter Post</a></li>
+						<?php
+					} 
+					?>
 
 					<!-- Si user est admin -->
 					<?php

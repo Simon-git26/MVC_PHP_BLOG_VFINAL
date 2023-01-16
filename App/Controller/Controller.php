@@ -19,7 +19,9 @@ abstract class Controller {
             'getUser' => $getUser,
         ];
 
-        $this->render($arrayUserConnected, 'header');
+        if (isset($_SESSION['auth'])) {
+            $this->render($arrayUserConnected, 'header');
+        }
     }
 
 
@@ -29,13 +31,28 @@ abstract class Controller {
     // Je ferme la mémoire tampon  ob_get_clean();
     // Je require ma view
     protected function render($data, $view) {
-        if (isset($data)) {
-            ob_start();
-            extract($data);
-            ob_get_clean();
-            require_once ROOT.'/App/Views/'.$view.'.php';
+        if (isset($_SESSION['auth']) && $_SESSION['auth'] != "") {
+            if (isset($data)) {
+                ob_start();
+                extract($data);
+                ob_get_clean();
+                require_once ROOT.'/App/Views/'.$view.'.php';
+            } else {
+                throw new \Exception("Données ".$data." introuvables", 1);
+            }
         } else {
-            throw new \Exception("Données ".$data." introuvables", 1);
+            if ($view == "blog" || $view == "login" || $view == "register") {
+                if (isset($data)) {
+                    ob_start();
+                    extract($data);
+                    ob_get_clean();
+                    require_once ROOT.'/App/Views/'.$view.'.php';
+                } else {
+                    throw new \Exception("Données ".$data." introuvables", 1);
+                }
+            } else {
+                header("Location: ?page=login");
+            }
         }
     }
 }

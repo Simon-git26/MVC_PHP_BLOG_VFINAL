@@ -61,7 +61,13 @@
 
                                     <!--  Affichage de mon post unitaire -->
                                     <form class="box" action="?page=post" method="post" name="post">
-                                        <input type="submit" value="Affichage de mon post" name="submit" class="btn btn-action">
+                                        <?php
+                                        if (isset($_SESSION['auth']) && $_SESSION['auth'] != "") {
+                                            ?>
+                                            <input type="submit" value="Affichage de mon post" name="submit" class="btn btn-action">
+                                            <?php
+                                        }
+                                        ?>
                                         <input type="hidden" name="post_id" value="<?=urlencode($post['post_id']) ?>">
                                     </form>
 

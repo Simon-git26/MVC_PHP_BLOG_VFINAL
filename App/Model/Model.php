@@ -230,7 +230,7 @@ class Model {
             $submit_content = stripslashes($_POST['content_comment']);
 
             $request = self::$_database->query(
-                "UPDATE `comments` SET comment_user='".$submit_user."', comment_content='".$submit_content."', is_actif = 1, post_id = 2 WHERE comment_id = $comment_id"
+                "UPDATE `comments` SET comment_user='".$submit_user."', comment_content='".$submit_content."', is_actif = 1 WHERE comment_id = $comment_id"
            
             );
 
